@@ -189,5 +189,8 @@ const iconClass = isHome
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem("theme", next ? "dark" : "light");
     setThemeIcon();
+    if (window.REMARK42) {
+      window.REMARK42.changeTheme(next ? "dark" : "light");
+    }
   });
 </script>

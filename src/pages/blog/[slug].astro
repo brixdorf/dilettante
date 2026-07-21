@@ -231,7 +231,18 @@ const jsonLd = {
         <div class="mt-12 rounded-md border border-dashed border-border p-8 text-center">
           <Icon name="message" class="mx-auto h-5 w-5 text-muted-foreground" />
           <div class="mt-2 font-serif text-lg">Comments</div>
-          <p class="mt-1 text-sm text-muted-foreground">Hook this up to your favourite commenting platform &mdash; Giscus, Disqus, or your own.</p>
+          <script is:inline>
+            var remark_config = {
+              host: "https://comments.romitraj.dev",
+              site_id: "dilettante",
+              theme: document.documentElement.classList.contains("dark") ? "dark" : "light",
+              no_footer: true
+            };
+          </script>
+          <script is:inline>
+            !function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),c=".js",d=n.head||n.body;"noModule"in r?(r.type="module",c=".mjs"):r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+c,d.appendChild(r)}}(remark_config.components||["embed"],document);
+          </script>
+          <div id="remark42">Comments are loading...</div>
         </div>
       </div>
 
