@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
-import Newsletter from "../components/Newsletter.astro";
 import Icon from "../components/Icon.astro";
 import autumnScene from "../assets/autumn-scene.webp";
 import {
@@ -22,7 +21,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
 ---
 
 <BaseLayout
-  title={`${SITE.name} - Writing, design & the slow web`}
+  title={`${SITE.name}`}
   description={SITE.description}
   canonical="/"
   flushFooter
@@ -56,20 +55,19 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     <div class="relative mx-auto flex min-h-[calc(100svh-6rem)] max-w-6xl items-center px-5 py-20 sm:min-h-[680px] sm:py-24">
       <div class="max-w-4xl text-white drop-shadow-[0_1px_18px_rgba(0,0,0,0.28)]">
         <h1 class="font-serif text-[2.5rem] font-medium leading-[1.02] sm:text-6xl lg:text-7xl">
-        An independent magazine on
-          <span class="italic text-white"> writing</span>,
-          <span class="italic text-white"> design</span>, and the
-          <span class="italic text-white"> slow web</span>.
+        A digital journal containing the collection of little
+          <span class="italic text-white"> tidbits</span>, I feel are worth
+          <span class="italic text-white"> sharing</span>.
         </h1>
         <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/86">
-          Essays, field notes, and conversations &mdash; published occasionally, edited carefully, and meant to be read in a single sitting.
+          Tech, non-tech, whatever I feel like writing at the moment.
         </p>
         <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <a
             href={`/blog/${featured.slug}`}
             class="group inline-flex items-center gap-2 border-b border-white pb-1 text-sm font-medium text-white hover:border-white/70 hover:text-white/82"
           >
-            Begin with this issue's lead essay
+            Begin with my latest banger
             <Icon name="arrow-right" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </a>
           <a href="/blog" class="text-sm text-white/76 hover:text-white">
@@ -142,7 +140,7 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
             <span>{featured.readingTime} min read</span>
           </div>
           <a href={`/blog/${featured.slug}`} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
-            Read the essay <Icon name="arrow-right" class="h-3.5 w-3.5" />
+            Read the entry <Icon name="arrow-right" class="h-3.5 w-3.5" />
           </a>
         </div>
       </article>
@@ -189,7 +187,6 @@ const latest = (await sortedPosts()).filter((post) => post.slug !== featured.slu
     </div>
   </section>
 
-  <Newsletter />
 </BaseLayout>
 
 <script>

@@ -49,8 +49,8 @@ const { flush = false } = Astro.props;
   </div>
   <div class="border-t border-border/60">
     <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-5 py-5 text-xs text-muted-foreground sm:flex-row sm:items-center">
-      <div>&copy; {new Date().getFullYear()} {SITE.name}. Quietly made on the open web.</div>
-      <div>Set in Fraunces &amp; Inter.</div>
+      <div>{"`© ${new Date().getCurrentYear()}`"}</div>
+      <div>made with :emoji: in the Open Web</div>
     </div>
   </div>
 </footer>

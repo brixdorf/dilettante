@@ -10,14 +10,14 @@ const posts = await sortedPosts();
 
 <BaseLayout
   title={`Archive - ${SITE.name}`}
-  description="Every essay, field note, and interview we've published. Search and filter by category or tag."
+  description="Every piece I've published. Search and filter by category or tag."
   canonical="/blog"
 >
   <div class="mx-auto max-w-4xl px-5 py-12" data-archive>
     <Breadcrumbs items={[{ label: "Home", to: "/" }, { label: "Archive" }]} />
     <h1 class="mt-4 font-serif text-4xl font-semibold sm:text-5xl">The archive</h1>
     <p class="mt-3 max-w-xl text-muted-foreground">
-      Every piece we've published. {posts.length} essays, field notes, and interviews.
+      Every piece I've published. {posts.length} bangers.
     </p>
 
     <form data-archive-search class="mt-8 flex items-center gap-2 border-b border-border pb-2">

@@ -3,7 +3,7 @@ import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 
 const site =
-  process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://quietpages-eta.vercel.app";
+  process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://blog.romitraj.dev";
 
 export default defineConfig({
   site,
