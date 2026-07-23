@@ -27,6 +27,7 @@ const absoluteUrl = (value) => {
 };
 const canonicalUrl = absoluteUrl(canonical || Astro.url.pathname);
 const ogImageUrl = absoluteUrl(ogImage);
+const rybbitSiteId = "baf839ddf444";
 ---
 
 <!doctype html>
@@ -80,6 +81,14 @@ const ogImageUrl = absoluteUrl(ogImage);
         } catch (error) {}
       })();
     </script>
+
+    <!-- Rybbit Tracking Snippet -->
+    <script
+      src="https://analytics.romitraj.dev/api/script.js"
+      data-site-id={rybbitSiteId}
+      defer
+    ></script>
+    
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
