@@ -49,4 +49,8 @@ export const categories = [
   { slug: "test", name: "Test" },
 ];
 
-export const tags = [];
+export const tags = [
+  { slug: "process", name: "Process" },
+  { slug: "web", name: "Web" },
+  { slug: "writing", name: "Writing" },
+];
