@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/prune-unused-assets.mjs",
     "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
     "format": "prettier --write ."
   },
   "dependencies": {
