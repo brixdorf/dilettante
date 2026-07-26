@@ -57,4 +57,7 @@ export const tags = [
   { slug: "react", name: "React" },
   { slug: "side-project", name: "Side Project" },
   { slug: "tailwind", name: "Tailwind" },
+  { slug: "backend", name: "Backend" },
+  { slug: "docker", name: "Docker" },
+  { slug: "self-hosting", name: "Self Hosting" },
 ];
