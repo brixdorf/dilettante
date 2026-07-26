@@ -47,10 +47,14 @@ export const authors = [
 
 export const categories = [
   { slug: "life", name: "Life" },
+  { slug: "tech", name: "Tech" },
 ];
 
 export const tags = [
   { slug: "writing", name: "Writing" },
   { slug: "habits", name: "Habits" },
   { slug: "learning", name: "Learning" },
+  { slug: "react", name: "React" },
+  { slug: "side-project", name: "Side Project" },
+  { slug: "tailwind", name: "Tailwind" },
 ];
