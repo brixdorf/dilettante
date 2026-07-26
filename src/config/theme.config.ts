@@ -46,11 +46,11 @@ export const authors = [
 ];
 
 export const categories = [
-  { slug: "test", name: "Test" },
+  { slug: "life", name: "Life" },
 ];
 
 export const tags = [
-  { slug: "process", name: "Process" },
-  { slug: "web", name: "Web" },
   { slug: "writing", name: "Writing" },
+  { slug: "habits", name: "Habits" },
+  { slug: "learning", name: "Learning" },
 ];
