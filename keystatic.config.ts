@@ -268,7 +268,10 @@ const postBody = () => {
 };
 
 export default config({
-  storage: { kind: "local" },
+  storage: {
+    kind: "github",
+    repo: "brixdorf/dilettante",
+  },
   ui: {
     brand: { name: "A Dilettante's Journal" },
   },
