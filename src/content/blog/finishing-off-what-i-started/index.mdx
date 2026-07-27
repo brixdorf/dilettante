@@ -37,7 +37,7 @@ Simple enough. Nothing fancy. Now the thing is whenever I click on any checkbox,
 
 ![](./sqlite.jpg)
 
-*SQLite logo, courtesy of [D. Richard Hipp](https://en.wikipedia.org/wiki/D._Richard_Hipp).*
+*SQLite logo, courtesy of [D. Richard Hipp](https://en.wikipedia.org/wiki/D._Richard_Hipp)*
 
 **SQLite** is a very neat little database. It is just a single file which contains all our records. It is also easy to backup. So I chose this for my project. Now I needed a schema to store the records. My initial idea was to store the type (newspaper/book), date and status (read/not read) for each row.
 
@@ -45,19 +45,19 @@ But when I asked if this schema was good enough to Claude, it suggested that ins
 
 ![](./db-schema.png)
 
-Now you may think if we just combined the day, month and year to a single date column it would be even simpler, and yes it would have been, but then we would have to manually extract them every time a new row was modified, so this purpose I avoided it.
+Now you may think if we just combined the day, month and year to a single date column it would be even simpler, and yes it would have been, but then we would have to manually extract them every time a new row was modified, so for this purpose I avoided it.
 
 Moving on to backend, I used **Node** and **Express** to handle my server. I created 3 API endpoints. One to login, one to fetch the habits and one to toggle them. For logging in, I used JWT and bcrypt for authentication. Basically, instead of storing the password in plain text to check the authenticity, I stored a bcrypt hash of the password in the environment variable. This way, the real password is never even mentioned anywhere.
 
-But we cannot just login every time we open the page. I need to make sure that after the user is authenticated, the browser remember this interaction. So for this, I used JWT (JSON Web Token). After successfully verifying the credentials, the browser will be provided a secured JWT token which will be used to verify future requests, without the need to login again.
+But we cannot just login every time we open the page. I need to make sure that after the user is authenticated, the browser remembers this interaction. So for this, I used JWT (JSON Web Token). After successfully verifying the credentials, the browser will be provided a secured JWT token which will be used to verify future requests, without the need to login again.
 
-Though these are not indefinite. I made the expiry set to 10 days, so after every 10 days the user has to login again. Just for security reasons.
+Though these are not indefinite. I made the expiry set to 30 days, so after every 30 days the user has to login again. Just for security reasons.
 
 Now I want to share a cool neat little thing called...
 
 ![](./cookies.jpg)
 
-*Cookie photo by [Magnific](https://www.magnific.com/free-photo/top-view-chocolate-chips-cookie_29802817.htm).*
+*Cookie photo by [Magnific](https://www.magnific.com/free-photo/top-view-chocolate-chips-cookie_29802817.htm)*
 
 **COOKIES!**
 
@@ -73,7 +73,7 @@ Now that I had built the backend. I needed both my frontend and backend to talk 
 
 After doing all this, my site was complete. But everything was working... locally. If I need to access my website from anywhere, I need to deploy it to my server.
 
-This process was what took the most time. Although the deployment was simple, it kept breaking at one point because I had not stored the \*.\****env*** files in the server. A ROOKIE MISTAKE!
+This process was what took the most time. Although the deployment was simple, it kept breaking at one point because I had not stored the *.**env*** files in the server. A ROOKIE MISTAKE!
 
 I bought the server from **OVHcloud**. The server is located at Gravelines, France as all the Indian and Asian servers were exhausted. I bought the server, created a new user, set up firewall, set up SSH, and then cloned my code files to it.
 
@@ -87,7 +87,7 @@ At this point my project was complete. But my mentor advised me to deploy it to 
 
 ![](./docker-logo.png)
 
-*Docker logo, courtesy of [Docker](https://www.docker.com/).*
+*Docker logo, courtesy of [Docker](https://www.docker.com/)*
 
 How this works is, you basically create an image of your project, now this image contains every required file and dependency for your project to work. Now anybody can just pull this image to their system, and with a single command can run your project in their system.
 
