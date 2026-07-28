@@ -375,7 +375,7 @@ export default config({
             caption: creditPart({ label: "Caption" }),
             author: creditPart({ label: "Photographer" }),
             authorUrl: creditPart({ kind: "url", label: "Photographer URL" }),
-            source: creditPart({ label: "Source", defaultValue: "Unsplash" }),
+            source: creditPart({ label: "Source" }),
             sourceUrl: creditPart({ kind: "url", label: "Source URL" }),
           },
           {
