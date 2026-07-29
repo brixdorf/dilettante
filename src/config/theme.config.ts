@@ -60,4 +60,6 @@ export const tags = [
   { slug: "backend", name: "Backend" },
   { slug: "docker", name: "Docker" },
   { slug: "self-hosting", name: "Self Hosting" },
+  { slug: "data-ownership", name: "Data Ownership" },
+  { slug: "privacy", name: "Privacy" },
 ];
