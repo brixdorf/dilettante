@@ -135,3 +135,34 @@ After this, run
 ```bash
 sudo sshd -T | grep -i passwordauthentication
 ```
+
+It it returns `passwordauthentication no`, then congrats, password based login is now disabled in your system.
+
+### Enabling firewall (ufw)
+
+**ufw** stands for Uncomplicated Firewall. It is the default firewall installed in most servers. To configure it, first enable support for SSH, so it doesn't block your login connections.
+
+```bash
+sudo ufw allow 22/tcp
+```
+
+After this, set the default policies
+
+```bash
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
+
+And then enable it
+
+```bash
+sudo ufw enable
+```
+
+To check if everything is correct, run
+
+```bash
+sudo ufw status verbose
+```
+
+If all is ok, the firewall is also configured now.
