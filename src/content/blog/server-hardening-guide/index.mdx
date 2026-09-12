@@ -13,7 +13,6 @@ imageCredit:
   authorUrl: "https://unsplash.com/@tylergm"
   source: "Unsplash"
   sourceUrl: "https://unsplash.com/photos/a-rack-of-electronic-equipment-in-a-dark-room-OnI_TNcIv9U"
-draft: true
 ---
 
 In my [last blog](https://blog.romitraj.dev/blog/why-you-should-own-a-server), I laid down the reasons and benefits of owning a server. But, our job doesn't stop at just getting a server, we need to properly set it up. The most important part of a server is how you access it. Considering this is going to be your main online space, you should treat it the same as how you treat your personal belongings. And the first step, is the properly secure it.
@@ -166,3 +165,45 @@ sudo ufw status verbose
 ```
 
 If all is ok, the firewall is also configured now.
+
+### Enabling fail2ban
+
+Now what is **fail2bann**? Well, it is a tool to ban IPs who are repeatedly pinging (and failing) to login to your server, essentially the bad actors.
+
+Install it first,
+
+```bash
+sudo apt install fail2ban -y
+```
+
+Now you have to create a local `.jail` config file. This specifies the rules for this service, below are some good defaults
+
+```bash
+sudo tee /etc/fail2ban/jail.local > /dev/null << 'EOF'
+[DEFAULT]
+bantime = 30m
+findtime = 10m
+maxretry = 3
+
+[sshd]
+enabled = true
+EOF
+```
+
+Now restart it
+
+```bash
+sudo systemctl restart fail2ban
+```
+
+And see its status
+
+```bash
+sudo fail2ban-client status sshd
+```
+
+If it comes out right, all good. Moving on to..
+
+### Base hardening
+
+These are some
