@@ -13,17 +13,18 @@ imageCredit:
   authorUrl: "https://unsplash.com/@tylergm"
   source: "Unsplash"
   sourceUrl: "https://unsplash.com/photos/a-rack-of-electronic-equipment-in-a-dark-room-OnI_TNcIv9U"
+draft: true
 ---
 
 In my [last blog](https://blog.romitraj.dev/blog/why-you-should-own-a-server), I laid down the reasons and benefits of owning a server. But, our job doesn't stop at just getting a server, we need to properly set it up. The most important part of a server is how you access it. Considering this is going to be your main online space, you should treat it the same as how you treat your personal belongings. And the first step, is the properly secure it.
 
 
 
-In order to access your server, you are required to use something called **SSH** which stands for Secure Shell. It is basically an encrypted tunnel which protects the data passing through it so nobody can eavesdrop it. You will need a SSH client for this. Although SSH is preinstalled in Linux and [Putty](https://putty.software/) is the default goto in Windows, I will suggest you to use [Termius](https://termius.com/) instead. It provides a clean GUI and a simple interface to work with.
+In order to access your server, you are required to use something called **SSH** which stands for Secure Shell. It is basically an encrypted tunnel which protects the data passing through it so nobody can eavesdrop it. You will need a SSH client for this. Although SSH is preinstalled in Linux and Mac and [Putty](https://putty.software/) is the default goto in Windows, I will suggest you to use [Termius](https://termius.com/) instead. It provides a clean GUI and a really simple interface to work with.
 
 
 
-Now, how do you identify your server? You do so by a unique IP address assigned to it. Although IPV6 is the modern standard, we will use the IPV4 address right now for better compatibility.
+Now, how do you connect to your server? You do so by a unique IP address assigned to it. Although IPV6 is the modern standard, it is recommended to use IPV4 addresses right now for better compatibility.
 
 
 
@@ -31,25 +32,25 @@ Enter your username and server IP in Termius and login.
 
 
 
-Whenever you rent a server from a provider (for eg. OVHcloud), you are initially given the default username and a temporary password. You are required to change the password on your first login, after doing so, note down the new password and continue from here.
+Whenever you rent a server from a provider (for eg. OVHcloud), you are initially given a default username and a temporary password. You are required to change the password on your first login, after doing so, note down the new password and continue from here.
 
 ### Initial login and creating a new user
 
-The very first command that you should run in your server is, of course,
+The very first command that you should run in your server is, of course
 
 ```
 sudo apt update && sudo apt upgrade -y
 ```
 
-Updating the system is paramount. If it asks you to reboot, just do `sudo reboot` and come back here.
+Updating the system is paramount. If it asks you to reboot, just do `sudo reboot`.
 
-You should create a new user with root permissions and delete the default one provided with your setup. In order to create a new user, run
+You should create a new user with root permissions and delete the default one provided with your server. In order to create a new user, run
 
 ```
 sudo adduser <your username>
 ```
 
-You will be asked to provide a full name and some personal details, just skop them.
+You will be asked to provide a full name and some personal details, just skip them.
 
 And to give it `sudo` permissions, run
 
@@ -66,4 +67,3 @@ In order to switch to your new user, run
 ```
 sudo su - <your username>
 ```
-
