@@ -62,4 +62,6 @@ export const tags = [
   { slug: "self-hosting", name: "Self Hosting" },
   { slug: "data-ownership", name: "Data Ownership" },
   { slug: "privacy", name: "Privacy" },
+  { slug: "security", name: "Security" },
+  { slug: "server", name: "Server" },
 ];
