@@ -33,7 +33,7 @@ Whenever you rent a server from a provider (for e.g. [OVHcloud](https://www.ovhc
 
 ⚠️ Keep in mind this guide is based on **Ubuntu Server 26.04**
 
-### 1: Initial login and creating a new user
+1. ### Initial login and creating a new user
 
 The very first command that you should run in your server is, of course
 
@@ -67,11 +67,11 @@ If it returns `sudo`, you are good to go.
 
 Now why did we create a new user? Well, default usernames in most installs are the distro names (e.g. `ubuntu`) and they are pretty easy to guess. Creating a new `root` user gives you more flexibility and less chance for attackers to guess it.
 
-### 2: Generating a new SSH key
+2. ### Generating a new SSH key
 
 In Termius, go to the keychain section and generate a new key. Use the default key type, use a strong passphrase (generate it using a password manager) and then you will get a public-private key pair. You will use this to login to your server. Save them.
 
-### 3: Setting up key-based login for your new user
+3. ### Setting up key-based login for your new user
 
 In order to switch to your new user, run
 
@@ -212,4 +212,162 @@ If it comes out right, all good. Moving on to..
 
 7. ### Base hardening
 
-These are some
+These are some additional security steps which strengthen your server even more.
+
+Confirm that the `root` login is disabled
+
+```bash
+sudo sshd -T | grep -i permitrootlogin
+```
+
+It should return `no`.
+
+Now, we should delete the default user that was created automatically by the vendor. To check which users are currently logged in, run
+
+```bash
+loginctl list-sessions
+```
+
+Terminate all the `ubuntu` sessions
+
+```bash
+sudo loginctl terminate-user ubuntu
+```
+
+Delete the temporary user and its home directory
+
+```bash
+sudo userdel -r -f ubuntu
+```
+
+After this, reboot
+
+```bash
+sudo reboot
+```
+
+8. ### Changing the default SSH port
+
+The default SSH port is `22`, and hence this is the port most attackers use to brute force a login. If we simply change it to something random, they will have no known port to connect to.
+
+Keep in mind, you should keep running your active SSH session, since if you do something wrong, you can undo it here.
+
+Pick a random number between [50K-55K](https://www.random.org/integers/?num=1\&min=50000\&max=55000\&col=1\&base=10\&format=html\&rnd=new), this will be your port.
+
+We will pick `54372` for this session (do not use the same!).
+
+Allow it in firewall
+
+```bash
+sudo ufw allow 54372/tcp
+```
+
+Update **fail2ban** setup
+
+```bash
+sudo sed -i 's/port    = ssh/port    = ssh,54372/' /etc/fail2ban/jail.local
+```
+
+Restart it
+
+```bash
+sudo systemctl restart fail2ban
+```
+
+Now you need to create a systemd socket override. This is to ensure that the port is reflected system-wide. Run
+
+```bash
+sudo systemctl edit ssh.socket
+```
+
+This will open an override file. Only change the following, don't touch anything else!
+
+```bash
+[Socket]
+ListenStream=
+ListenStream=0.0.0.0:54372
+ListenStream=[::]:54372
+```
+
+Reload systemd and restart the SSH socket and service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart ssh.socket
+sudo systemctl restart ssh.service
+```
+
+To see status run
+
+```bash
+sudo systemctl status ssh.socket
+```
+
+Finally check if both IPV4 and IPV6 connections are listening to the new port
+
+```bash
+sudo ss -tlnp | grep ssh
+```
+
+Should show `0.0.0.0:54372` and `[::]:54372`
+
+Now, connect a new SSH session with the new port, keep the old one active.
+
+If you are able to connect. Congrats, you just got a brand new SSH port. Now let's deactivate the old ones.
+
+Remove port `22` from ufw
+
+```bash
+sudo ufw delete allow 22/tcp
+```
+
+Now, from your local machine (not server) run
+
+```bash
+# From your local machine (linux command):
+nc -zv -w 5 <server-ip> 22
+```
+
+You should see that the connection is timed out. This proves old SSH port is being blocked by firewall.
+
+9. ### Renaming your server
+
+Who doesn't like to name their precious possessions? Well, this server is one of yours, so name it. We will choose `augustus` for this session. Run
+
+```bash
+sudo hostnamectl set-hostname augustus
+```
+
+Verify with
+
+```bash
+hostnamectl
+```
+
+Edit `/etc/hosts` to match
+
+```bash
+sudo nano /etc/hosts
+```
+
+Update `127.0.0.1` (localhost) to
+
+```bash
+127.0.1.1    augustus
+```
+
+Now finally reboot
+
+```bash
+sudo reboot
+```
+
+### Ending Remarks
+
+Well well well, may I say if you have followed this guide whole, you now have a very very secure server. You are easily above 90% of the people who manage servers.
+
+Now go wild with the server and deploy cool stuff in it.
+
+Welcome to your **own** digital space.
+
+Till next time, this is Romit, signing off.
