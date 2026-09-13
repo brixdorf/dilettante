@@ -1,7 +1,7 @@
 ---
 title: "Server Hardening Guide"
 excerpt: "Making sure you are the only one logging into it"
-date: 2026-09-13
+date: 2026-09-14
 category: "tech"
 tags: ["server", "security"]
 author: "romit"
@@ -13,14 +13,13 @@ imageCredit:
   authorUrl: "https://unsplash.com/@tylergm"
   source: "Unsplash"
   sourceUrl: "https://unsplash.com/photos/a-rack-of-electronic-equipment-in-a-dark-room-OnI_TNcIv9U"
-draft: true
 ---
 
 In my [last blog](https://blog.romitraj.dev/blog/why-you-should-own-a-server), I laid down the reasons and benefits of owning a server. But, our job doesn't stop at just getting a server, we need to properly set it up. The most important part of a server is how you access it. Considering this is going to be your main online space, you should treat it the same as how you treat your personal belongings. And the first step, is the properly secure it.
 
 In order to access your server, you are required to use something called **SSH** which stands for Secure Shell. It is basically an encrypted tunnel which protects the data passing through it so nobody can eavesdrop it. You will need a SSH client for this. Although SSH is preinstalled in Linux and Mac and [Putty](https://putty.software/) is the default goto in Windows, I will suggest you to use [Termius](https://termius.com/) instead. It provides a clean GUI and a really simple interface to work with.
 
-Now, before we move on, I want to ask you a very important question. Do you use a password manager? If your answer is no, then the first thing you should do, my friend, is create an account in [Bitwarden](https://bitwarden.com/) and use that as your default password manager. Import all your existing passwords to it, download their apps and use it. Store all your credentials related to your server in it.
+Now, before we move on, I want to ask you a very important question. Do you use a password manager? If your answer is no, then the first thing you should do, my friend, is create an account in [Bitwarden](https://bitwarden.com/) and use that as your default password manager. Import all your existing passwords to it, download their apps and use it. Store all your credentials related to your server inside it.
 
 I am not joking, if you are not using a password manager in 2026, you are making a truly grave mistake.
 
@@ -30,11 +29,11 @@ Now, how do you connect to your server? You do so by a unique IP address assigne
 
 Enter your username and server IP in Termius and login.
 
-Whenever you rent a server from a provider (for eg. [OVHcloud](https://www.ovhcloud.com/en-in/vps/)), you are initially given a default username and a temporary password. You are required to change the password on your first login, after doing so, note down the new password and continue from here.
+Whenever you rent a server from a provider (for e.g. [OVHcloud](https://www.ovhcloud.com/en-in/vps/)), you are initially given a default username and a temporary password. You are required to change the password on your first login, after doing so, note down the new password (in a password manager) and continue from here.
 
 ⚠️ Keep in mind this guide is based on **Ubuntu Server 26.04**
 
-### Initial login and creating a new user
+1. ### Initial login and creating a new user
 
 The very first command that you should run in your server is, of course
 
@@ -44,10 +43,10 @@ sudo apt update && sudo apt upgrade -y
 
 Updating the system is paramount. If it asks you to reboot, just do `sudo reboot`.
 
-You should create a new user with root permissions and delete the default one provided with your server. In order to create a new user, run
+You should now create a new user with root permissions. Run
 
 ```bash
-sudo adduser <your username>
+sudo adduser <your-username>
 ```
 
 You will be asked to provide a full name and some personal details, just skip them.
@@ -58,26 +57,26 @@ And to give it `sudo` permissions, run
 sudo usermod -aG sudo <your username>
 ```
 
-To check if your user now has sudo permissions, run
+To check if your user now has `sudo` permissions, run
 
 ```bash
-groups <your username>
+groups <your-username>
 ```
 
 If it returns `sudo`, you are good to go.
 
-Now why did we create a new user? Well, default usernames in most installs are the distronames (eg. `ubuntu`) and they are pretty easy to guess. Creating a new root user gives you more flexibility and less chance for attackers to guess it.
+Now why did we create a new user? Well, default usernames in most installs are the distro names (e.g. `ubuntu`) and they are pretty easy to guess. Creating a new `root` user gives you more flexibility and less chance for attackers to guess it.
 
-### Generating a new SSH key
+2. ### Generating a new SSH key
 
 In Termius, go to the keychain section and generate a new key. Use the default key type, use a strong passphrase (generate it using a password manager) and then you will get a public-private key pair. You will use this to login to your server. Save them.
 
-### Setting up key-based login for your new user
+3. ### Setting up key-based login for your new user
 
 In order to switch to your new user, run
 
 ```bash
-sudo su - <your username>
+sudo su - <your-username>
 ```
 
 Now, we have to create a `.ssh` folder inside our home directory. Give all permissions to the owner for this folder.
@@ -87,7 +86,7 @@ mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 ```
 
-Now, you have to append your newly generated public key in Termius to a `authorized_keys` folder inside `.ssh`.
+Now, you have to append your newly generated public key in Termius to a `authorized_keys` folder inside `.ssh`
 
 ```bash
 echo "ssh-ed25519 xxx... Generated By Termius" >> ~/.ssh/authorized_keys
@@ -108,11 +107,11 @@ whoami
 sudo whoami
 ```
 
-If you see `<your username>` and `root`, congrats, you have successfully connected a passwordless SSH session.
+If you see `<your-username>` and `root`, congrats, you have successfully connected a passwordless SSH session.
 
-### Disable password based login
+4. ### Disabling password based login
 
-After you are successfully able to connect to remote sessions through SSH, it is time to remove the deadweight, them being password based logins. See, when attackers target a server, they try to guess the user's password through various methods (like bruteforcing, dictionary attacks etc.), so by disabling the password login entirely, we can essentially kill the entire attack vector from the start.
+After you are successfully able to connect to remote sessions through SSH, it is time to remove the deadweight, them being password based logins. See, when attackers target a server, they try to guess the user's password through various methods (like brute forcing, dictionary attacks etc.), so by disabling the password login entirely, we can essentially kill the entire attack vector from the start.
 
 Also, ensure that you have properly authenticated your SSH keys, because once you turn password based login off, you cannot access your server if you lose your keys (yet another reason to use a password manager like Bitwarden).
 
@@ -128,7 +127,13 @@ What the above command does is toggling the `PasswordAuthentication` method as f
 sudo sshd -t
 ```
 
-to verify if the syntax is correct.
+to verify that the syntax is correct.
+
+Now restart SSH
+
+```bash
+sudo systemctl restart ssh
+```
 
 After this, run
 
@@ -138,7 +143,7 @@ sudo sshd -T | grep -i passwordauthentication
 
 It it returns `passwordauthentication no`, then congrats, password based login is now disabled in your system.
 
-### Enabling firewall (ufw)
+5. ### Enabling firewall (ufw)
 
 **ufw** stands for Uncomplicated Firewall. It is the default firewall installed in most servers. To configure it, first enable support for SSH, so it doesn't block your login connections.
 
@@ -167,9 +172,9 @@ sudo ufw status verbose
 
 If all is ok, the firewall is also configured now.
 
-### Enabling fail2ban
+6. ### Enabling fail2ban
 
-Now what is **fail2bann**? Well, it is a tool to ban IPs who are repeatedly pinging (and failing) to login to your server, essentially the bad actors.
+Now what even is **fail2ban**? Well, it is a tool to ban IPs who are repeatedly pinging (and failing) to login to your server, essentially the bad actors.
 
 Install it first,
 
@@ -205,6 +210,6 @@ sudo fail2ban-client status sshd
 
 If it comes out right, all good. Moving on to..
 
-### Base hardening
+7. ### Base hardening
 
 These are some
