@@ -33,7 +33,7 @@ Whenever you rent a server from a provider (for e.g. [OVHcloud](https://www.ovhc
 
 ⚠️ Keep in mind this guide is based on **Ubuntu Server 26.04**
 
-1. ### Initial login and creating a new user
+### 1: Initial login and creating a new user
 
 The very first command that you should run in your server is, of course
 
@@ -67,11 +67,11 @@ If it returns `sudo`, you are good to go.
 
 Now why did we create a new user? Well, default usernames in most installs are the distro names (e.g. `ubuntu`) and they are pretty easy to guess. Creating a new `root` user gives you more flexibility and less chance for attackers to guess it.
 
-2. ### Generating a new SSH key
+### 2: Generating a new SSH key
 
 In Termius, go to the keychain section and generate a new key. Use the default key type, use a strong passphrase (generate it using a password manager) and then you will get a public-private key pair. You will use this to login to your server. Save them.
 
-3. ### Setting up key-based login for your new user
+### 3: Setting up key-based login for your new user
 
 In order to switch to your new user, run
 
