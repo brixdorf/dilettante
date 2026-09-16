@@ -324,7 +324,7 @@ sudo systemctl status ssh.socket
 Finally check if both IPV4 and IPV6 connections are listening to the new port
 
 ```bash
-sudo ss -tlnp | grep ssh
+sudo ss -tlnp | grep 23117
 ```
 
 Should show `0.0.0.0:23117` and `[::]:23117`
@@ -368,9 +368,10 @@ Edit `/etc/hosts` to match
 sudo nano /etc/hosts
 ```
 
-Update `127.0.0.1` (localhost) to
+Add `127.0.0.1` (augustus) to
 
 ```bash
+127.0.0.1    localhost
 127.0.1.1    augustus
 ```
 
