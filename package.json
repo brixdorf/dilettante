@@ -7,19 +7,20 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/prune-unused-assets.mjs",
+    "build": "astro build",
     "preview": "astro preview",
-    "start": "node ./dist/server/entry.mjs",
+    "start": "node ./server.mjs",
     "format": "vp check --fix",
     "test": "vp test",
     "test:browsers": "playwright test",
     "smoke": "playwright test --project=chromium --project=keystatic",
-    "lint": "vp check"
+    "lint": "vp check && astro check"
   },
   "dependencies": {
     "@astrojs/mdx": "8.1.5",
     "@astrojs/node": "11.1.12",
     "@astrojs/react": "7.1.8",
+    "@astrojs/rss": "4.0.19",
     "@keystatic/astro": "6.0.0",
     "@keystatic/core": "0.6.9",
     "@tailwindcss/vite": "4.3.5",
@@ -33,8 +34,10 @@
     "tailwindcss": "4.3.5"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.12",
     "@playwright/test": "1.65.0",
     "@types/node": "26.6.6",
+    "typescript": "6.0.3",
     "vite-plus": "1.6.0"
   },
   "engines": {
