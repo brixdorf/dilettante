@@ -8,6 +8,7 @@ import {
   LIVE_ORIGIN,
   builtPages,
   builtPosts,
+  commentsAddress,
   pretendToBeLive,
   watchThirdParties,
 } from "./helpers";
@@ -27,7 +28,7 @@ test.describe("on the live site", () => {
   test("every page loads Rybbit with the blog's site ID", async ({ page, baseURL }) => {
     await pretendToBeLive(page, baseURL!);
     const requests = await watchThirdParties(page);
-    for (const path of ["/", "/about", builtPosts()[0]]) {
+    for (const path of ["/", "/about/", builtPosts()[0]]) {
       requests.length = 0;
       await page.goto(`${LIVE_ORIGIN}${path}`, { waitUntil: "load" });
       await expect
@@ -43,7 +44,7 @@ test.describe("on the live site", () => {
   test("pages other than posts do not load comments", async ({ page, baseURL }) => {
     await pretendToBeLive(page, baseURL!);
     const requests = await watchThirdParties(page);
-    await page.goto(`${LIVE_ORIGIN}/about`, { waitUntil: "load" });
+    await page.goto(`${LIVE_ORIGIN}/about/`, { waitUntil: "load" });
     expect(requests.filter((url) => url.startsWith(COMMENTS_ORIGIN))).toEqual([]);
   });
 
@@ -53,7 +54,6 @@ test.describe("on the live site", () => {
       baseURL,
     }) => {
       const path = builtPosts()[index];
-      const slug = path.split("/").filter(Boolean)[1];
       await pretendToBeLive(page, baseURL!);
       const requests = await watchThirdParties(page);
       await page.goto(`${LIVE_ORIGIN}${path}`, { waitUntil: "load" });
@@ -65,16 +65,12 @@ test.describe("on the live site", () => {
       const config = await page.evaluate(() => {
         const remark = (window as unknown as { remark_config: Record<string, string> })
           .remark_config;
-        return {
-          host: remark.host,
-          site_id: remark.site_id,
-          url: remark.url ?? window.location.origin + window.location.pathname,
-        };
+        return { host: remark.host, site_id: remark.site_id, url: remark.url };
       });
       expect(config).toEqual({
         host: COMMENTS_ORIGIN,
         site_id: "dilettante",
-        url: `${LIVE_ORIGIN}/blog/${slug}`,
+        url: commentsAddress(path),
       });
     });
   }
@@ -100,11 +96,11 @@ test.describe("on the live site", () => {
     );
     expect(startTheme).toBe("dark");
 
-    await page.locator("[data-theme-toggle]").first().click();
+    await page.locator("[data-theme-toggle]:visible").first().click();
     const calls = () =>
       page.evaluate(() => (window as unknown as { REMARK42: { calls: string[] } }).REMARK42.calls);
     await expect.poll(calls).toEqual(["light"]);
-    await page.locator("[data-theme-toggle]").first().click();
+    await page.locator("[data-theme-toggle]:visible").first().click();
     await expect.poll(calls).toEqual(["light", "dark"]);
   });
 });

@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vite-plus/test";
 import { describeSync, displayNameFor, syncTaxonomy } from "../../scripts/sync-taxonomy.mjs";
 
 const repoRoot = join(import.meta.dirname, "..", "..");
-const CONFIG = "src/config/theme.config.ts";
+const CONFIG = "src/config/taxonomy.ts";
 
 const post = (category: string, tags: string[]) =>
   [
@@ -111,7 +111,7 @@ describe("the taxonomy sync", () => {
       cwd: root,
       encoding: "utf8",
     });
-    expect(output).toMatch(/theme\.config\.ts: /);
+    expect(output).toMatch(/taxonomy\.ts: /);
     expect(readConfig()).not.toContain('slug: "life"');
   });
 });

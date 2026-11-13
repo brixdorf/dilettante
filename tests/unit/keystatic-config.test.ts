@@ -20,3 +20,22 @@ describe("Keystatic's storage mode", () => {
     expect((await loadConfig()).storage).toEqual({ kind: "github", repo: "brixdorf/dilettante" });
   });
 });
+
+describe("Keystatic's post fields match the blog's content rules", () => {
+  it("offers only the configured authors", async () => {
+    const { authors } = await import("../../src/config/authors.ts");
+    const author = (await loadConfig()).collections!.blog.schema.author as unknown as {
+      kind: string;
+      options: { value: string }[];
+    };
+    expect(author.options.map((option) => option.value)).toEqual(authors.map((item) => item.slug));
+  });
+
+  it("requires alt text for the thumbnail", async () => {
+    const alt = (await loadConfig()).collections!.blog.schema.thumbnailAlt as unknown as {
+      validate: (value: string) => unknown;
+    };
+    expect(() => alt.validate("")).toThrow();
+    expect(alt.validate("A waving hand.")).toBe("A waving hand.");
+  });
+});

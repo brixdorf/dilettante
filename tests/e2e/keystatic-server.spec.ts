@@ -59,7 +59,7 @@ test.describe("search engines are told not to index Keystatic", () => {
     });
   }
 
-  for (const path of ["/", "/about", "/blog/hello-there", "/rss.xml", "/keystatic-not-admin"]) {
+  for (const path of ["/", "/about/", "/blog/hello-there/", "/rss.xml", "/keystatic-not-admin"]) {
     test(`${path} is left indexable`, async ({ request }) => {
       const response = await request.get(path, { maxRedirects: 0 });
       expect(response.headers()["x-robots-tag"]).toBeUndefined();

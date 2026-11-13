@@ -21,7 +21,6 @@ test.describe("the RSS feed at /rss.xml", () => {
     const items = xml.match(/<item>[\s\S]*?<\/item>/g) ?? [];
     expect(items).toHaveLength(5);
 
-    const slugs = builtPosts().map((path) => path.split("/").filter(Boolean)[1]);
     const links: string[] = [];
     for (const item of items) {
       expect(tagText(item, "title")).toBeTruthy();
@@ -30,7 +29,7 @@ test.describe("the RSS feed at /rss.xml", () => {
       expect(Number.isNaN(Date.parse(pubDate))).toBe(false);
       links.push(tagText(item, "link") ?? "");
     }
-    expect(links.sort()).toEqual(slugs.map((slug) => `${LIVE_ORIGIN}/blog/${slug}`).sort());
+    expect(links.sort()).toEqual(builtPosts().map((path) => `${LIVE_ORIGIN}${path}`));
   });
 
   test("lists the newest post first", async ({ request }) => {
@@ -40,18 +39,16 @@ test.describe("the RSS feed at /rss.xml", () => {
   });
 });
 
-test("the sitemap exists and lists the home page and every post", async ({ request }) => {
+test("the sitemap lists only the home page, archive, About, Contact, the posts and the author", async ({
+  request,
+}) => {
   const response = await request.get("/sitemap.xml");
   expect(response.ok()).toBe(true);
   const xml = await response.text();
   expect(xml).toContain("<urlset");
-  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  expect(locs).toContain(`${LIVE_ORIGIN}/`);
-  for (const path of builtPosts()) {
-    expect(
-      locs.some((loc) => loc.replace(/\/$/, "") === `${LIVE_ORIGIN}${path}`.replace(/\/$/, "")),
-    ).toBe(true);
-  }
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).sort();
+  const expected = ["/", "/blog/", "/about/", "/contact/", "/authors/romit/", ...builtPosts()];
+  expect(locs).toEqual(expected.map((path) => `${LIVE_ORIGIN}${path}`).sort());
 });
 
 test("robots.txt exists, blocks nothing and points to the sitemap", async ({ request }) => {

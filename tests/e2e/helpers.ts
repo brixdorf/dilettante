@@ -14,19 +14,27 @@ const walk = (dir: string): string[] =>
     entry.isDirectory() ? walk(join(dir, entry.name)) : [join(dir, entry.name)],
   );
 
-/** Every page the build wrote, as the address a visitor types (404.html excluded). */
+/** Every page the build wrote, at its address, which ends in a slash (404.html excluded). */
 export const builtPages = () =>
   walk(clientDir)
     .filter((file) => file.endsWith(".html") && !file.endsWith(`${sep}404.html`))
-    .map((file) => {
-      const path = relative(clientDir, file).split(sep).join("/");
-      return `/${path.replace(/(^|\/)index\.html$/, "")}`;
-    })
+    .map(
+      (file) =>
+        `/${relative(clientDir, file)
+          .split(sep)
+          .join("/")
+          .replace(/index\.html$/, "")}`,
+    )
     .sort();
 
-/** Addresses of the five posts, as the build wrote them. */
-export const builtPosts = () =>
-  builtPages().filter((path) => /^\/blog\/[^/]+\/?$/.test(path) && path !== "/blog/");
+/** Addresses of the five posts, as the build wrote them: /blog/<slug>/. */
+export const builtPosts = () => builtPages().filter((path) => /^\/blog\/[^/]+\/$/.test(path));
+
+/** The folder name of a post, from its address. */
+export const slugOf = (path: string) => path.split("/").filter(Boolean)[1];
+
+/** The address Remark42 files a post's comments under: the old one, without a trailing slash. */
+export const commentsAddress = (path: string) => `${LIVE_ORIGIN}/blog/${slugOf(path)}`;
 
 /**
  * Records every request the page makes to the analytics or comments servers, and answers it with

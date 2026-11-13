@@ -36,7 +36,7 @@ describe("the taxonomy sync Action", () => {
 
   it("commits only the taxonomy file", () => {
     expect(step("stefanzweifel/git-auto-commit-action")?.with?.file_pattern).toBe(
-      "src/config/theme.config.ts",
+      "src/config/taxonomy.ts",
     );
   });
 });
