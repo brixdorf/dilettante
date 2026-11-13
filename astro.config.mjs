@@ -11,6 +11,14 @@ const site = process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://blo
 
 export default defineConfig({
   site,
+
+  // The blog runs behind a reverse proxy. This lets Astro trust the proxy's X-Forwarded-* headers
+  // for this address only, so pages and the Keystatic GitHub login see the real public address.
+  security: {
+    allowedDomains: [
+      { protocol: new URL(site).protocol.slice(0, -1), hostname: new URL(site).hostname },
+    ],
+  },
   integrations: [mdx(), react(), keystatic(), taxonomySync()],
 
   vite: {
