@@ -6,6 +6,9 @@ const BLOG_DIR = "src/content/blog";
 const THEME_CONFIG = "src/config/theme.config.ts";
 const ENTRY_FILENAME = "index.mdx";
 
+// Sorts strings the way Array.prototype.sort does by default (by character code), spelled out.
+const byCodeUnit = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+
 const FRONTMATTER = /^---(?:\r?\n([\s\S]*?))?\r?\n---(?:\r?\n|$)/;
 
 export const displayNameFor = (slug) =>
@@ -25,7 +28,7 @@ const findPostFiles = (blogDir) => {
     }
   };
   if (existsSync(blogDir)) walk(blogDir);
-  return found.sort();
+  return found.sort(byCodeUnit);
 };
 
 const collectUsedTaxonomy = (blogDir, logger) => {
@@ -159,7 +162,7 @@ const reconcile = (existing, used) => {
   const present = new Set(kept.map((entry) => entry.slug).filter(Boolean));
   const added = [...used]
     .filter((slug) => !present.has(slug))
-    .sort()
+    .sort(byCodeUnit)
     .map((slug) => ({
       code: `{ slug: ${JSON.stringify(slug)}, name: ${JSON.stringify(displayNameFor(slug))} }`,
       comment: "",
