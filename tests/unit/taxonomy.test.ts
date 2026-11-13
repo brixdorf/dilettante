@@ -6,7 +6,6 @@ import { cpSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } f
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vite-plus/test";
-// @ts-expect-error: plain JavaScript module without type declarations
 import { describeSync, displayNameFor, syncTaxonomy } from "../../scripts/sync-taxonomy.mjs";
 
 const repoRoot = join(import.meta.dirname, "..", "..");
@@ -25,7 +24,7 @@ const post = (category: string, tags: string[]) =>
   ].join("\n");
 
 let root: string;
-const quiet = { warn: () => {}, info: () => {} };
+const quiet = { warn: () => {}, info: () => {} } as unknown as Console;
 
 const writePost = (slug: string, category: string, tags: string[]) => {
   mkdirSync(join(root, "src/content/blog", slug), { recursive: true });
@@ -44,7 +43,7 @@ afterEach(() => rmSync(root, { recursive: true, force: true }));
 
 describe("the taxonomy sync", () => {
   it("leaves the real repository unchanged, because it is already in sync", () => {
-    const result = syncTaxonomy({ root: repoRoot, logger: quiet, dryRun: true });
+    const result = syncTaxonomy({ root: repoRoot, logger: quiet, dryRun: true })!;
     expect(result).not.toBeNull();
     expect(result.changed).toBe(false);
   });
@@ -53,7 +52,7 @@ describe("the taxonomy sync", () => {
     writePost("one", "tech", ["writing", "brand-new-tag"]);
     writePost("two", "fresh-category", ["writing"]);
 
-    const result = syncTaxonomy({ root, logger: quiet });
+    const result = syncTaxonomy({ root, logger: quiet })!;
 
     expect(result.changed).toBe(true);
     expect(result.added).toEqual({ categories: ["fresh-category"], tags: ["brand-new-tag"] });
@@ -86,7 +85,7 @@ describe("the taxonomy sync", () => {
     writePost("one", "tech", ["brand-new-tag"]);
     const before = readConfig();
 
-    const result = syncTaxonomy({ root, logger: quiet, dryRun: true });
+    const result = syncTaxonomy({ root, logger: quiet, dryRun: true })!;
 
     expect(result.changed).toBe(true);
     expect(readConfig()).toBe(before);
