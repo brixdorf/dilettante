@@ -71,3 +71,10 @@ test("internal links point to the new addresses", async ({ page }) => {
   }
   expect(stale).toEqual([]);
 });
+
+test("the page for a missing address names no canonical address of its own", async ({ page }) => {
+  await page.goto("/this-page-does-not-exist/");
+  await expect(page.locator('link[rel="canonical"]')).toHaveCount(0);
+  await expect(page.locator('meta[property="og:url"]')).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, follow");
+});
