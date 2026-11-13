@@ -6,9 +6,24 @@ export interface NavLink {
 export interface SocialLink extends NavLink {
   /** A file name from `src/icons/bootstrap`, used as `social-<name>`. */
   icon: string;
-  /** Shown on the Contact page, under "Find Me Here". Links without one are left off it. */
+  /** The name shown beside the icon on the Contact page, under "Find Me Here". */
   handle?: string;
 }
+
+// Romit's profiles elsewhere.
+const github = {
+  label: "GitHub",
+  href: "https://github.com/brixdorf",
+  icon: "github",
+  handle: "@brixdorf",
+} satisfies SocialLink;
+const x = { label: "X", href: "https://x.com/brixdorf", icon: "twitter-x", handle: "@brixdorf" };
+const linkedin = {
+  label: "LinkedIn",
+  href: "https://www.linkedin.com/in/romitrajsahu",
+  icon: "linkedin",
+  handle: "romitrajsahu",
+} satisfies SocialLink;
 
 export const siteConfig = {
   name: "A Dilettante's Journal",
@@ -41,9 +56,17 @@ export const siteConfig = {
     siteId: "dilettante",
   },
 
+  /**
+   * Romit's profiles, in this order on the Contact page under "Find Me Here", and in the author's
+   * structured data (`sameAs`), which tells search engines they are the same person.
+   */
+  profiles: [github, x, linkedin] satisfies SocialLink[],
+
+  /** The icons in the footer. Its GitHub icon is this blog's repository. */
   socials: [
-    { label: "X", href: "https://x.com/brixdorf", icon: "twitter-x", handle: "@brixdorf" },
+    x,
     { label: "GitHub", href: "https://github.com/brixdorf/dilettante", icon: "github" },
+    linkedin,
   ] satisfies SocialLink[],
 };
 

@@ -17,7 +17,6 @@ const algorithms = key.algorithms
   .map((part) => `${part.name} (${part.use})`)
   .join(", ")
   .replace(/, ([^,]*)$/, " and $1");
-const contactLinks = siteConfig.socials.filter((social) => social.handle);
 ---
 
 <BaseLayout
@@ -90,7 +89,7 @@ const contactLinks = siteConfig.socials.filter((social) => social.handle);
             {siteConfig.email}
           </a>
         </li>
-        {contactLinks.map((social) => (
+        {siteConfig.profiles.map((social) => (
           <li>
             <a href={social.href} class="text-link inline-flex items-center gap-2">
               <Icon name={`social-${social.icon}`} class="size-4" />

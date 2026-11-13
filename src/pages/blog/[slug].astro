@@ -83,7 +83,12 @@ const schema = withBreadcrumbs(
     timeRequired: `PT${post.readingTime}M`,
     image: absolute(card.src),
     author: author
-      ? { "@type": "Person", name: author.name, url: absolute(authorUrl(author.slug)) }
+      ? {
+          "@type": "Person",
+          name: author.name,
+          url: absolute(authorUrl(author.slug)),
+          ...(author.sameAs ? { sameAs: author.sameAs } : {}),
+        }
       : undefined,
     publisher: { "@type": "Organization", name: siteConfig.name, url: absolute("/") },
   },

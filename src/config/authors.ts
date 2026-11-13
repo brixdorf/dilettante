@@ -1,4 +1,5 @@
 import type { ImageMetadata } from "astro";
+import { siteConfig } from "./site";
 
 export interface Author {
   /** What a post's `author` field refers to, and the URL: `/authors/<slug>/`. */
@@ -12,6 +13,8 @@ export interface Author {
   longBio: string;
   /** An imported image, or the path of a drawing in `public/`. */
   avatar: ImageMetadata | string;
+  /** The author's profiles elsewhere, for search engines (`sameAs` in the structured data). */
+  sameAs?: readonly string[];
 }
 
 export const authors = [
@@ -23,6 +26,7 @@ export const authors = [
     longBio:
       "I have interests in lots of avenues of science, literature and life. I like to share my experiences and journey with others through writing. Watch, Learn, and Grow. Act > Think",
     avatar: "/avatars/romit.svg",
+    sameAs: siteConfig.profiles.map((profile) => profile.href),
   },
 ] as const satisfies readonly Author[];
 

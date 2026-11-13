@@ -38,6 +38,7 @@ const crumbs = [
         name: author.name,
         description: author.longBio,
         url: absolute(authorUrl(author.slug)),
+        ...(author.sameAs ? { sameAs: author.sameAs } : {}),
       },
     },
     crumbs,

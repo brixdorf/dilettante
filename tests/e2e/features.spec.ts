@@ -3,6 +3,13 @@
 import { expect, test } from "@playwright/test";
 import { LIVE_ORIGIN, builtPages, builtPosts } from "./helpers";
 
+// Romit's profiles, in the order the Contact page lists them.
+const PROFILES = [
+  "https://github.com/brixdorf",
+  "https://x.com/brixdorf",
+  "https://www.linkedin.com/in/romitrajsahu",
+];
+
 test("Ctrl+K opens search, which finds a post and opens it", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press("ControlOrMeta+k");
@@ -57,8 +64,29 @@ test("every page has structured data that matches what it shows", async ({ page 
         .find((item) => item["@type"] === "BlogPosting");
       await expect(page.locator("h1")).toHaveText(posting.headline);
       expect(posting.author.name).toBe("Romit Raj Sahu");
+      expect(posting.author.sameAs, path).toEqual(PROFILES);
     }
   }
+});
+
+test("the author page names Romit's profiles in its structured data", async ({ page }) => {
+  await page.goto("/authors/romit/");
+  const blocks = await page.$$eval('script[type="application/ld+json"]', (scripts) =>
+    scripts.map((script) => JSON.parse(script.textContent ?? "")),
+  );
+  const profile = blocks
+    .flatMap((block) => block["@graph"] ?? [block])
+    .find((item) => item["@type"] === "ProfilePage");
+  expect(profile.mainEntity.sameAs).toEqual(PROFILES);
+});
+
+test("the footer links to LinkedIn too", async ({ page }) => {
+  await page.goto("/");
+  const footer = page.locator("footer");
+  await expect(
+    footer.locator('a[href="https://www.linkedin.com/in/romitrajsahu"] svg'),
+  ).toHaveCount(1);
+  await expect(footer.locator('a[href="https://x.com/brixdorf"]')).toHaveCount(1);
 });
 
 test("posts end with the author note, comments and Keep reading", async ({ page }) => {

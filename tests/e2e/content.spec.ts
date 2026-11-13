@@ -69,6 +69,33 @@ test.describe("Romit's words", () => {
     await expect(page.locator(`main a[href="mailto:${EMAIL}"]`).first()).toBeVisible();
   });
 
+  test("Find Me Here lists email, GitHub, X, LinkedIn and the feed, each with its icon", async ({
+    page,
+  }) => {
+    await page.goto("/contact/");
+    const links = page
+      .locator("aside")
+      .filter({ has: page.getByRole("heading", { name: "Find Me Here" }) })
+      .locator("li a");
+    const found = await links.evaluateAll((list) =>
+      list.map((link) => ({
+        href: link.getAttribute("href"),
+        text: link.textContent?.trim(),
+        icon: link.querySelector("svg") !== null,
+      })),
+    );
+    expect(found).toEqual([
+      { href: `mailto:${EMAIL}`, text: EMAIL, icon: true },
+      { href: "https://github.com/brixdorf", text: "@brixdorf", icon: true },
+      { href: "https://x.com/brixdorf", text: "@brixdorf", icon: true },
+      { href: "https://www.linkedin.com/in/romitrajsahu", text: "romitrajsahu", icon: true },
+      { href: "/rss.xml", text: "RSS feed", icon: true },
+    ]);
+    // All in the same style.
+    const classes = await links.evaluateAll((list) => list.map((link) => link.className));
+    expect(new Set(classes).size).toBe(1);
+  });
+
   test("the archive", async ({ page }) => {
     await page.goto("/blog/");
     expect(await mainText(page)).toContain("Every piece I've published. 5 bangers.");
