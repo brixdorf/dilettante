@@ -80,13 +80,17 @@ test("the author page names Romit's profiles in its structured data", async ({ p
   expect(profile.mainEntity.sameAs).toEqual(PROFILES);
 });
 
-test("the footer links to LinkedIn too", async ({ page }) => {
+test("the footer's icons link to Romit's profiles and email", async ({ page }) => {
   await page.goto("/");
-  const footer = page.locator("footer");
-  await expect(
-    footer.locator('a[href="https://www.linkedin.com/in/romitrajsahu"] svg'),
-  ).toHaveCount(1);
-  await expect(footer.locator('a[href="https://x.com/brixdorf"]')).toHaveCount(1);
+  const icons = await page
+    .locator("footer a.icon-btn")
+    .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
+  expect(icons).toEqual([
+    "https://x.com/brixdorf",
+    "https://github.com/brixdorf",
+    "https://www.linkedin.com/in/romitrajsahu",
+    "mailto:hi@romitraj.dev",
+  ]);
 });
 
 test("posts end with the author note, comments and Keep reading", async ({ page }) => {

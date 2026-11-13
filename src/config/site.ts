@@ -62,12 +62,8 @@ export const siteConfig = {
    */
   profiles: [github, x, linkedin] satisfies SocialLink[],
 
-  /** The icons in the footer. Its GitHub icon is this blog's repository. */
-  socials: [
-    x,
-    { label: "GitHub", href: "https://github.com/brixdorf/dilettante", icon: "github" },
-    linkedin,
-  ] satisfies SocialLink[],
+  /** The icons in the footer, followed by email. */
+  socials: [x, github, linkedin] satisfies SocialLink[],
 };
 
 export const navigation: NavLink[] = [
