@@ -1,0 +1,140 @@
+---
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import Icon from "@/components/ui/Icon.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { keyFacts } from "@/lib/pgp";
+import { withBreadcrumbs } from "@/lib/schema";
+
+const crumbs = [{ label: "Home", href: "/" }, { label: "Contact" }];
+
+// The card's facts come from the key file itself (public/), read when the blog is built.
+const key = keyFacts(readFileSync(join(process.cwd(), "public", siteConfig.pgpKey), "utf8"));
+const command = `gpg --locate-external-keys ${siteConfig.email}`;
+const algorithms = key.algorithms
+  .map((part) => `${part.name} (${part.use})`)
+  .join(", ")
+  .replace(/, ([^,]*)$/, " and $1");
+const contactLinks = siteConfig.socials.filter((social) => social.handle);
+---
+
+<BaseLayout
+  title="Contact"
+  description={`Get in touch with ${siteConfig.name}.`}
+  structuredData={withBreadcrumbs({ "@type": "ContactPage", name: "Contact" }, crumbs)}
+>
+  <PageHeader
+    title="Say hello."
+    lead="Notes, corrections, or just a thought. I read everything."
+    crumbs={crumbs}
+  />
+
+  <div class="shell grid gap-14 lg:grid-cols-[minmax(0,1.5fr)_1fr] lg:gap-24">
+    <section
+      class="rounded-panel border border-line bg-surface p-6 sm:p-10"
+      aria-labelledby="pgp-title"
+      data-pgp-card
+    >
+      <h2 id="pgp-title" class="serif text-2xl">OpenPGP</h2>
+      <dl class="mt-6 grid gap-4 text-[0.9375rem]">
+        <div>
+          <dt class="label">Fingerprint</dt>
+          <dd class="font-mono break-words">{key.fingerprint}</dd>
+        </div>
+        <div>
+          <dt class="label">Key ID</dt>
+          <dd class="font-mono">{key.keyId}</dd>
+        </div>
+        <div>
+          <dt class="label">Algorithms</dt>
+          <dd>{algorithms}</dd>
+        </div>
+        {key.expires && (
+          <div>
+            <dt class="label">Expires</dt>
+            <dd>
+              <time datetime={key.expires}>{key.expires}</time>
+            </dd>
+          </div>
+        )}
+      </dl>
+      <a href={siteConfig.pgpKey} class="btn btn-primary mt-8" download>
+        Download key
+      </a>
+      <p class="mt-8 leading-relaxed text-body">You can also fetch it straight from my domain:</p>
+      <div class="mt-3 flex flex-wrap items-center gap-3">
+        <code class="rounded-lg bg-sunken px-3 py-2 font-mono text-sm break-all select-all">
+          {command}
+        </code>
+        <button
+          type="button"
+          class="btn btn-quiet btn-sm"
+          aria-label="Copy the command"
+          data-copy={command}
+          data-needs-js
+        >
+          <span data-copy-words>Copy</span>
+        </button>
+        <span class="sr-only" role="status" data-copy-status></span>
+      </div>
+      <p class="mt-6 leading-relaxed text-body">
+        It is also on{" "}
+        <a
+          href={`https://keys.openpgp.org/search?q=${encodeURIComponent(siteConfig.email)}`}
+          class="text-link"
+        >
+          keys.openpgp.org
+        </a>
+        .
+      </p>
+    </section>
+
+    <aside>
+      <h2 class="serif text-2xl">Find Me Here</h2>
+      <ul class="mt-4 space-y-3">
+        <li>
+          <a href={`mailto:${siteConfig.email}`} class="text-link inline-flex items-center gap-2">
+            <Icon name="mail" class="size-4" />
+            {siteConfig.email}
+          </a>
+        </li>
+        {contactLinks.map((social) => (
+          <li>
+            <a href={social.href} class="text-link inline-flex items-center gap-2">
+              <Icon name={`social-${social.icon}`} class="size-4" />
+              {social.handle}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/rss.xml" class="text-link inline-flex items-center gap-2">
+            <Icon name="rss" class="size-4" />
+            RSS feed
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+</BaseLayout>
+
+<script>
+  // The copy button beside the gpg command. Without scripts it stays hidden, and the command can
+  // still be selected by hand.
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+    const words = button.querySelector<HTMLElement>("[data-copy-words]");
+    const status = button.parentElement?.querySelector<HTMLElement>("[data-copy-status]");
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "");
+        if (words) words.textContent = "Copied";
+        if (status) status.textContent = "Copied";
+        window.setTimeout(() => {
+          if (words) words.textContent = "Copy";
+          if (status) status.textContent = "";
+        }, 2000);
+      } catch {}
+    });
+  });
+</script>

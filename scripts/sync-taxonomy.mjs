@@ -3,7 +3,7 @@ import { join, relative } from "node:path";
 import { load } from "js-yaml";
 
 const BLOG_DIR = "src/content/blog";
-const THEME_CONFIG = "src/config/theme.config.ts";
+const TAXONOMY_CONFIG = "src/config/taxonomy.ts";
 const ENTRY_FILENAME = "index.mdx";
 
 // Sorts strings the way Array.prototype.sort does by default (by character code), spelled out.
@@ -183,9 +183,9 @@ const reconcile = (existing, used) => {
  */
 
 export function syncTaxonomy({ root = process.cwd(), logger = console, dryRun = false } = {}) {
-  const themePath = join(root, THEME_CONFIG);
+  const themePath = join(root, TAXONOMY_CONFIG);
   if (!existsSync(themePath)) {
-    logger?.warn(`skipping sync: ${THEME_CONFIG} not found`);
+    logger?.warn(`skipping sync: ${TAXONOMY_CONFIG} not found`);
     return null;
   }
 
@@ -240,6 +240,7 @@ export const describeSync = (result) => {
 if (import.meta.filename === process.argv[1]) {
   const result = syncTaxonomy({ dryRun: process.argv.includes("--dry-run") });
   if (!result) process.exitCode = 1;
-  else if (result.changed) console.log(`${relative(".", THEME_CONFIG)}: ${describeSync(result)}`);
-  else console.log(`${relative(".", THEME_CONFIG)}: already in sync`);
+  else if (result.changed)
+    console.log(`${relative(".", TAXONOMY_CONFIG)}: ${describeSync(result)}`);
+  else console.log(`${relative(".", TAXONOMY_CONFIG)}: already in sync`);
 }

@@ -10,7 +10,7 @@ export default function taxonomySync() {
     hooks: {
       "astro:config:setup": ({ config, logger }) => {
         const result = syncTaxonomy({ root: fileURLToPath(config.root), logger });
-        if (result?.changed) logger.info(`theme.config.ts updated: ${describeSync(result)}`);
+        if (result?.changed) logger.info(`taxonomy.ts updated: ${describeSync(result)}`);
       },
 
       "astro:server:setup": ({ server, logger }) => {
@@ -22,7 +22,7 @@ export default function taxonomySync() {
           timer = undefined;
           try {
             const result = syncTaxonomy({ root: projectRoot, logger });
-            if (result?.changed) logger.info(`theme.config.ts updated: ${describeSync(result)}`);
+            if (result?.changed) logger.info(`taxonomy.ts updated: ${describeSync(result)}`);
           } catch (error) {
             logger.warn(`taxonomy sync failed: ${error.message}`);
           }

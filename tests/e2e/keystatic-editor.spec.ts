@@ -82,7 +82,8 @@ test("a new post is saved in the same format as the real posts", async ({ page }
     await dialog.getByRole("button", { name: "Add", exact: true }).click();
     await expect(dialog).toBeHidden();
   }
-  await page.getByLabel(/^Author/).fill("romit");
+  // Author is a choice of the configured authors; Romit is the only one, chosen already.
+  await expect(page.getByRole("button", { name: /Romit Raj Sahu/ })).toBeVisible();
   const chooser = page.waitForEvent("filechooser");
   await page.getByRole("button", { name: "Choose file" }).click();
   await (await chooser).setFiles(join(blogDir, "hello-there", "waving_hand.png"));

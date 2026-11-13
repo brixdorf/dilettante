@@ -1,0 +1,23 @@
+---
+import SectionIndex from "@/components/home/SectionIndex.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { countBy, getPosts } from "@/lib/posts";
+import { withBreadcrumbs } from "@/lib/schema";
+
+const posts = await getPosts();
+const crumbs = [{ label: "Home", href: "/" }, { label: "Sections" }];
+---
+
+<BaseLayout
+  title="Sections"
+  description={`The sections of ${siteConfig.name}.`}
+  structuredData={withBreadcrumbs({ "@type": "CollectionPage", name: "Sections" }, crumbs)}
+>
+  <PageHeader
+    title="Sections"
+    crumbs={crumbs}
+  />
+  <SectionIndex counts={countBy(posts, "category")} />
+</BaseLayout>

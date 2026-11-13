@@ -1,0 +1,61 @@
+---
+import Avatar from "@/components/blog/Avatar.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { authors } from "@/config/authors";
+import { siteConfig } from "@/config/site";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { authorUrl } from "@/lib/posts";
+import { withBreadcrumbs } from "@/lib/schema";
+
+const crumbs = [{ label: "Home", href: "/" }, { label: "About" }];
+---
+
+<BaseLayout
+  title="About"
+  description={`About ${siteConfig.name}: A digital recollection of my ramblings`}
+  structuredData={withBreadcrumbs(
+    { "@type": "AboutPage", name: `About ${siteConfig.name}` },
+    crumbs,
+  )}
+>
+  <PageHeader title="A place for the great escape from online echo chambers." crumbs={crumbs} />
+
+  <div class="shell">
+    <div class="prose-article mx-auto max-w-[42rem]">
+      <p>
+        Sometimes the constant bombardment of social media and our afflictions in life lead us to
+        escape to a place distant from these conundrums. {siteConfig.name} began as a little project
+        of mine where I could share my thoughts and my progress in the field of tech and life.
+      </p>
+      <p>
+        Topics may diverge, consistency is not a promise, but you have to excuse me for that. Trust
+        me, I try my best.
+      </p>
+      <p>I always remember this in my mind,</p>
+      <h2>Act &gt; Think</h2>
+    </div>
+  </div>
+
+  <div class="shell mt-20">
+    <hr class="border-line" />
+  </div>
+
+  <section class="shell mt-20" aria-labelledby="author-title">
+    <h2 id="author-title" class="serif text-section font-normal">Author</h2>
+    <ul class="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+      {authors.map((author) => (
+        <li>
+          <a href={authorUrl(author.slug)} class="group flex items-center gap-4">
+            <Avatar author={author} size={64} />
+            <span>
+              <span class="serif block text-xl">
+                <span class="card-title">{author.name}</span>
+              </span>
+              <span class="mt-0.5 block text-sm text-muted">{author.role}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

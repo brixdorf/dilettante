@@ -44,8 +44,7 @@ export default defineConfig({
   webServer: [
     {
       // Keystatic's settings reach the running server only, as on the live site.
-      command:
-        "pnpm run build && node --env-file=tests/e2e/keystatic-test.env ./dist/server/entry.mjs",
+      command: "pnpm run build && node --env-file=tests/e2e/keystatic-test.env ./server.mjs",
       url: `http://127.0.0.1:${SITE_PORT}/`,
       env: { HOST: "127.0.0.1", PORT: String(SITE_PORT) },
       timeout: 300_000,

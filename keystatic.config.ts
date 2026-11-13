@@ -1,5 +1,6 @@
 import { collection, config, fields } from "@keystatic/core";
 import { DEFAULT_SCHEMA, Type } from "js-yaml";
+import { authors } from "./src/config/authors.ts";
 
 const BLOG_DIRECTORY = "src/content/blog";
 
@@ -141,6 +142,21 @@ const positiveInteger = (options: { label: string; description?: string }) => {
   return serializingAs(field, (value: number | null) =>
     value === null ? undefined : raw(String(value)),
   );
+};
+
+// A choice from a fixed list, saved as a quoted string like the text fields.
+const choice = (options: {
+  label: string;
+  description?: string;
+  options: { label: string; value: string }[];
+}) => {
+  const field = fields.select({
+    label: options.label,
+    description: options.description,
+    options: options.options,
+    defaultValue: options.options[0].value,
+  });
+  return serializingAs(field, (value: string) => quoted(value));
 };
 
 const flag = (options: { label: string; description?: string }) => {
@@ -348,7 +364,7 @@ export default config({
         category: text({
           label: "Category",
           description:
-            "Category slug, e.g. “engineering”. Matches an entry in src/config/theme.config.ts.",
+            "Category slug, e.g. “engineering”. Matches an entry in src/config/taxonomy.ts.",
           required: true,
         }),
 
@@ -358,10 +374,10 @@ export default config({
           itemLabel: (props) => props.value || "Tag",
         }),
 
-        author: text({
+        author: choice({
           label: "Author",
-          description: "Author slug, e.g. “romit”. Matches an entry in src/config/theme.config.ts.",
-          required: true,
+          description: "Author slug, e.g. “romit”. Matches an entry in src/config/authors.ts.",
+          options: authors.map((author) => ({ label: author.name, value: author.slug })),
         }),
 
         thumbnail: entryImage({
@@ -372,7 +388,8 @@ export default config({
 
         thumbnailAlt: text({
           label: "Thumbnail alt text",
-          description: "Describe the image for screen readers. Leave empty if purely decorative.",
+          description: "Describe the image for screen readers.",
+          required: true,
         }),
 
         imageCredit: fields.object(
@@ -386,7 +403,7 @@ export default config({
           {
             label: "Image credit",
             description:
-              "Optional. Photographer, Photographer URL and Source URL are all required for a credit to be saved — until all three are filled in, no credit is written.",
+              "Optional. Photographer, Photographer URL and Source URL are all required for a credit to be saved. Until all three are filled in, no credit is written.",
             layout: [12, 6, 6, 6, 6],
           },
         ),

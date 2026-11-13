@@ -6,11 +6,16 @@ import react from "@astrojs/react";
 import node from "@astrojs/node";
 import keystatic from "@keystatic/astro";
 import taxonomySync from "./scripts/taxonomy-sync-integration.mjs";
+import { siteConfig } from "./src/config/site.ts";
 
-const site = process.env.SITE_URL || process.env.PUBLIC_SITE_URL || "https://blog.romitraj.dev";
+const site = siteConfig.siteUrl;
 
 export default defineConfig({
   site,
+  // Every page's address ends in a slash, and every link uses that form. Astro's own
+  // trailingSlash: "always" would also redirect Keystatic's admin and API, which break without
+  // their exact addresses, so it stays at the default ("ignore") and server.mjs redirects old page
+  // addresses (301) instead.
 
   // The blog runs behind a reverse proxy. This lets Astro trust the proxy's X-Forwarded-* headers
   // for this address only, so pages and the Keystatic GitHub login see the real public address.
@@ -19,7 +24,14 @@ export default defineConfig({
       { protocol: new URL(site).protocol.slice(0, -1), hostname: new URL(site).hostname },
     ],
   },
+
   integrations: [mdx(), react(), keystatic(), taxonomySync()],
+
+  markdown: {
+    shikiConfig: {
+      themes: { light: "github-light", dark: "github-dark-default" },
+    },
+  },
 
   vite: {
     plugins: [tailwindcss()],
