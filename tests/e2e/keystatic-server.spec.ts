@@ -27,6 +27,19 @@ test("the GitHub login sends GitHub the public address of the blog, not the loca
   );
 });
 
+test("a made-up forwarded address is ignored", async ({ request }) => {
+  const response = await request.get("/api/keystatic/github/login", {
+    headers: {
+      Host: "evil.example",
+      "X-Forwarded-Host": "evil.example",
+      "X-Forwarded-Proto": "https",
+    },
+    maxRedirects: 0,
+  });
+  const location = new URL(response.headers()["location"]);
+  expect(location.searchParams.get("redirect_uri")).not.toContain("evil.example");
+});
+
 test("the admin page loads in the built blog", async ({ page }) => {
   const response = await page.goto("/keystatic");
   expect(response?.ok()).toBe(true);
