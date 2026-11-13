@@ -115,7 +115,7 @@ Then open an old post: its comments must still be there. And log in to Rybbit wi
 
 **When something changes**
 
-- New headline or hero photo: `pnpm build`, then `pnpm run share` (in the toolbox on Fedora) redraws the share image (`public/og-image.png`), the screenshot above and the GitHub social preview (`../github-social-preview.png`, uploaded by hand in the repository's Settings, Social preview).
+- New headline or hero photo: `pnpm build`, then `pnpm run share` (in the toolbox on Fedora) redraws the share image (`public/og-image.png`), the screenshot above and the GitHub social preview (`../github-social-preview.png`, uploaded by hand in the repository's Settings, Social preview). It stops if any text would be hard to read on the photo.
 - New picture in a post: nothing to do. Every build saves each picture as JPEG XL, AVIF and its own format, and serves the smallest. The first build after a new picture takes a little longer; the results are kept in `node_modules/.cache`.
 - Every page's address ends in a slash. `server.mjs` starts the blog and sends old addresses without the slash to the new ones, so it is the start command (`pnpm start`, and `railpack.json` for Dokploy). It calls Node directly, because the finished Railpack image has no pnpm.
 

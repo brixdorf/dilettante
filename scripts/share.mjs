@@ -51,23 +51,78 @@ const card = ({ width, height }) => `<!doctype html>
   * { margin: 0; box-sizing: border-box; }
   html, body { width: ${width}px; height: ${height}px; overflow: hidden; }
   body { position: relative; background: #fbfdfe; color: #0b1f2c; font-family: "Geist", sans-serif; }
-  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: bottom; }
-  .shade { position: absolute; inset: 0; background: linear-gradient(to bottom, #fbfdfe 0%,
-    color-mix(in oklab, #fbfdfe 92%, transparent) 42%, color-mix(in oklab, #fbfdfe 62%, transparent) 60%, transparent 82%); }
-  .content { position: relative; height: 100%; display: flex; flex-direction: column; align-items: center; padding: ${height * 0.09}px ${width * 0.07}px; text-align: center; }
-  .name { font-family: "Newsreader", serif; font-size: ${height * 0.05}px; font-weight: 500; letter-spacing: -0.01em; }
-  h1 { margin-top: ${height * 0.07}px; font-family: "Newsreader", serif; font-weight: 300; font-size: ${height * 0.105}px; line-height: 1.04; letter-spacing: -0.02em; max-width: 15em; }
+  .photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  /* As on the home page: no wash over the photo, a soft mist only behind the words. */
+  .content { position: relative; isolation: isolate; height: 100%; display: flex; flex-direction: column; align-items: center; padding: ${height * 0.09}px ${width * 0.07}px; text-align: center; }
+  .content > * { position: relative; }
+  .content > *::before { content: ""; position: absolute; z-index: -1; inset: -0.35em -0.7em; border-radius: 0.8em;
+    background: color-mix(in oklab, #fbfdfe var(--mist), transparent); filter: blur(${height * 0.035}px); }
+  .name { --mist: 70%; font-family: "Newsreader", serif; font-size: ${height * 0.05}px; font-weight: 500; letter-spacing: -0.01em; }
+  h1 { --mist: 55%; margin-top: ${height * 0.07}px; font-family: "Newsreader", serif; font-weight: 300; font-size: ${height * 0.105}px; line-height: 1.04; letter-spacing: -0.02em; max-width: 15em; }
   em { font-style: italic; }
-  .address { position: absolute; bottom: ${height * 0.07}px; left: 50%; transform: translateX(-50%); padding: 0.35em 0.9em; border-radius: 999px; background: rgb(11 31 44 / 0.62); font-size: ${height * 0.032}px; color: #fbfdfe; letter-spacing: 0.02em; }
+  .address { position: absolute; bottom: ${height * 0.07}px; left: 50%; transform: translateX(-50%); padding: 0.35em 0.9em; border-radius: 999px; background: rgb(11 31 44 / 0.7); font-size: ${height * 0.032}px; color: #fbfdfe; letter-spacing: 0.02em; }
 </style></head><body>
   <img class="photo" src="${file(heroPhoto)}" alt="">
-  <div class="shade"></div>
   <div class="content">
     <div class="name">${escape(name)}</div>
     <h1>${headlineHtml}</h1>
   </div>
   <div class="address">${escape(address)}</div>
 </body></html>`;
+
+// Every line of text must be easy to read over the photo: WCAG AA contrast (3:1 for the headline,
+// 4.5:1 for the rest) against the pixels behind it, the worst pixel counting. Measured with the
+// text made invisible.
+const channel = (value) => {
+  const c = value / 255;
+  return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+};
+const luminance = ([r, g, b]) => 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+const contrast = (a, b) => {
+  const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (light + 0.05) / (dark + 0.05);
+};
+const checkContrast = async (page, out) => {
+  const pieces = await page.evaluate(() =>
+    [
+      [".name", 4.5],
+      ["h1", 3],
+      [".address", 4.5],
+    ].map(([selector, minimum]) => {
+      const element = document.querySelector(selector);
+      const rects = [];
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const range = document.createRange();
+        range.selectNodeContents(node);
+        rects.push(...[...range.getClientRects()].map((r) => [r.x, r.y, r.right, r.bottom]));
+      }
+      const color = getComputedStyle(element)
+        .color.match(/[\d.]+/g)
+        .slice(0, 3)
+        .map(Number);
+      return { selector, minimum, color, rects };
+    }),
+  );
+  await page.addStyleTag({
+    content: ".name, h1, h1 *, .address { color: transparent !important; }",
+  });
+  const { data, info } = await sharp(await page.screenshot({ type: "png" }))
+    .removeAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  for (const { selector, minimum, color, rects } of pieces) {
+    let worst = Infinity;
+    for (const [left, top, right, bottom] of rects)
+      for (let y = Math.max(0, Math.ceil(top)); y < Math.min(info.height, bottom); y++)
+        for (let x = Math.max(0, Math.ceil(left)); x < Math.min(info.width, right); x++) {
+          const i = (y * info.width + x) * 3;
+          worst = Math.min(worst, contrast(color, [data[i], data[i + 1], data[i + 2]]));
+        }
+    console.log(`${out}: ${selector} contrast ${worst.toFixed(2)}:1`);
+    if (worst < minimum) throw new Error(`${out}: ${selector} is hard to read on the photo.`);
+  }
+};
 
 const browser = await chromium.launch();
 try {
@@ -87,6 +142,7 @@ try {
     writeFileSync(out, png);
     console.log(`${out}: ${size.width} by ${size.height}, ${(png.length / 1024).toFixed(0)} KB`);
     if (png.length >= 1024 * 1024) throw new Error(`${out} is 1 MB or more.`);
+    await checkContrast(page, out);
     await page.close();
   }
 

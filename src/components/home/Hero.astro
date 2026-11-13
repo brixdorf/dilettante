@@ -25,7 +25,7 @@ const parts = hero.title.split(/(\*[^*]+\*)/).filter(Boolean);
   />
   <div class="hero-shade absolute inset-0 -z-10" aria-hidden="true"></div>
 
-  <div class="shell flex flex-col items-center pt-14 text-center sm:pt-20 lg:pt-24">
+  <div class="hero-copy shell flex flex-col items-center pt-14 text-center sm:pt-20 lg:pt-24">
     <h1 class="serif rise max-w-5xl text-display font-light">
       {parts.map((part) =>
         part.startsWith("*") ? <em class="italic">{part.slice(1, -1)}</em> : part,
@@ -53,31 +53,79 @@ const parts = hero.title.split(/(\*[^*]+\*)/).filter(Boolean);
 </section>
 
 <style>
-  /* This photograph is busier than the theme's misty hills, with peaks behind the headline, so
-     the fade into the canvas runs further down: the type sits in a pale mist, and the lake and
-     the autumn trees show below the buttons. */
+  /* The photograph is busy, with dark forest and bright snow behind the words, but it should be
+     seen. So there is no wash over all of it: a light band under the header, and a soft mist only
+     where the text sits, one blurred panel behind each piece of text. tests/e2e/hero.spec.ts
+     measures the contrast of every piece of text against the pixels behind it, and how much of
+     the photo shows. */
   .hero-shade {
     background: linear-gradient(
       to bottom,
-      var(--canvas) 0%,
-      color-mix(in oklab, var(--canvas) 94%, transparent) 46%,
-      color-mix(in oklab, var(--canvas) 86%, transparent) 64%,
-      color-mix(in oklab, var(--canvas) 35%, transparent) 84%,
-      transparent 100%
+      var(--canvas) 0,
+      color-mix(in oklab, var(--canvas) 70%, transparent) var(--header-h),
+      transparent 12rem
     );
   }
 
   :global(.dark) .hero-image {
-    filter: brightness(0.62) saturate(1.1);
+    filter: brightness(0.8);
   }
 
-  :global(.dark) .hero-shade {
-    background: linear-gradient(
-      to bottom,
-      var(--canvas) 0%,
-      color-mix(in oklab, var(--canvas) 90%, transparent) 46%,
-      color-mix(in oklab, var(--canvas) 78%, transparent) 64%,
-      color-mix(in oklab, var(--canvas) 35%, transparent) 100%
-    );
+  /* The panels share one layer, under all the text, so no panel covers the text above it. The
+     rise animation would give each piece its own layer while it holds its last frame, so it
+     holds only its first. */
+  .hero-copy {
+    isolation: isolate;
+  }
+
+  .hero-copy > * {
+    position: relative;
+    animation-fill-mode: backwards;
+  }
+
+  .hero-copy > *::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 3rem;
+    background: color-mix(in oklab, var(--canvas) var(--mist), transparent);
+    filter: blur(1.5rem);
+    pointer-events: none;
+  }
+
+  /* The headline, the lead line, and the buttons. Light text on the photo needs a little more. */
+  .hero-copy > h1::before {
+    --mist: 48%;
+    inset: -1.5rem -2.5rem;
+  }
+
+  /* Wider screens show the headline panel's sides against the sky, so they fade out further. */
+  @media (min-width: 40rem) {
+    .hero-copy > h1::before {
+      inset: -2.5rem -4.5rem;
+      filter: blur(3rem);
+    }
+  }
+
+  .hero-copy > p::before {
+    --mist: 76%;
+    inset: -2rem -2.5rem;
+  }
+
+  .hero-copy > div::before {
+    --mist: 40%;
+    inset: -1.5rem -2rem;
+  }
+
+  :global(.dark) .hero-copy > h1::before {
+    --mist: 60%;
+  }
+
+  :global(.dark) .hero-copy > p::before {
+    --mist: 78%;
+  }
+
+  :global(.dark) .hero-copy > div::before {
+    --mist: 45%;
   }
 </style>
