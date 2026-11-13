@@ -8,14 +8,6 @@ import { defineConfig, devices } from "@playwright/test";
 export const SITE_PORT = 4400;
 export const DEV_PORT = 4401;
 
-// Made-up values so Keystatic's GitHub mode can start in the built blog. They open nothing.
-const KEYSTATIC_TEST_ENV = {
-  KEYSTATIC_GITHUB_CLIENT_ID: "test-client-id",
-  KEYSTATIC_GITHUB_CLIENT_SECRET: "test-client-secret",
-  KEYSTATIC_SECRET: "test-secret-that-is-at-least-32-characters-long",
-  PUBLIC_KEYSTATIC_GITHUB_APP_SLUG: "test-app",
-};
-
 const site = { baseURL: `http://127.0.0.1:${SITE_PORT}` };
 
 export default defineConfig({
@@ -51,9 +43,11 @@ export default defineConfig({
   ],
   webServer: [
     {
-      command: "npm run build && node ./dist/server/entry.mjs",
+      // Keystatic's settings reach the running server only, as on the live site.
+      command:
+        "npm run build && node --env-file=tests/e2e/keystatic-test.env ./dist/server/entry.mjs",
       url: `http://127.0.0.1:${SITE_PORT}/`,
-      env: { ...KEYSTATIC_TEST_ENV, HOST: "127.0.0.1", PORT: String(SITE_PORT) },
+      env: { HOST: "127.0.0.1", PORT: String(SITE_PORT) },
       timeout: 300_000,
       reuseExistingServer: false,
       stdout: "ignore",
