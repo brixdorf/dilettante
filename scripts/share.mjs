@@ -58,7 +58,7 @@ const card = ({ width, height }) => `<!doctype html>
   .name { font-family: "Newsreader", serif; font-size: ${height * 0.05}px; font-weight: 500; letter-spacing: -0.01em; }
   h1 { margin-top: ${height * 0.07}px; font-family: "Newsreader", serif; font-weight: 300; font-size: ${height * 0.105}px; line-height: 1.04; letter-spacing: -0.02em; max-width: 15em; }
   em { font-style: italic; }
-  .address { position: absolute; bottom: ${height * 0.07}px; left: 0; right: 0; text-align: center; font-size: ${height * 0.032}px; color: #fbfdfe; letter-spacing: 0.02em; }
+  .address { position: absolute; bottom: ${height * 0.07}px; left: 50%; transform: translateX(-50%); padding: 0.35em 0.9em; border-radius: 999px; background: rgb(11 31 44 / 0.62); font-size: ${height * 0.032}px; color: #fbfdfe; letter-spacing: 0.02em; }
 </style></head><body>
   <img class="photo" src="${file(heroPhoto)}" alt="">
   <div class="shade"></div>
@@ -80,7 +80,7 @@ try {
     await page.setContent(card(size), { waitUntil: "load" });
     await page.evaluate(() => document.fonts.ready);
     const shot = await page.screenshot({ type: "png" });
-    // A palette of 256 colours keeps the file small; the photo is soft enough not to show it.
+    // A palette of 256 colours keeps the file small; the photos are soft enough not to show it.
     const png = await sharp(shot)
       .png({ palette: true, quality: 90, compressionLevel: 9 })
       .toBuffer();
