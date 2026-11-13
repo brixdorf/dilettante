@@ -52,7 +52,8 @@ const globalScope = globalThis as unknown as Record<symbol, boolean>;
 
 if (!globalScope[REGISTERED]) {
   globalScope[REGISTERED] = true;
-  DEFAULT_SCHEMA.compiledImplicit.unshift(
+  // js-yaml's types leave out compiledImplicit, the list of types it tries first when writing.
+  (DEFAULT_SCHEMA as unknown as { compiledImplicit: Type[] }).compiledImplicit.unshift(
     new Type("tag:yaml.org,2002:str", {
       kind: "scalar",
       resolve: () => false,
@@ -83,6 +84,9 @@ if (!globalScope[REGISTERED]) {
 
 type Serialized = RawYaml | ImageCreditPart | undefined;
 
+// Keystatic's field types expect "required" to be fixed in the code; here it is an option.
+type RequiredValidation = { isRequired?: boolean } | undefined;
+
 const serializingAs = <Field extends { serialize: (...args: never[]) => unknown }>(
   field: Field,
   serialize: (value: never) => Serialized,
@@ -111,7 +115,7 @@ const url = (options: { label: string; description?: string; required?: boolean 
   const field = fields.url({
     label: options.label,
     description: options.description,
-    validation: options.required ? { isRequired: true as const } : undefined,
+    validation: (options.required ? { isRequired: true } : undefined) as RequiredValidation,
   });
   return serializingAs(field, (value: string | null) =>
     isBlank(value) ? undefined : quoted(value as string),
@@ -123,7 +127,7 @@ const date = (options: { label: string; description?: string; required?: boolean
     label: options.label,
     description: options.description,
     defaultValue: options.required ? { kind: "today" as const } : undefined,
-    validation: options.required ? { isRequired: true as const } : undefined,
+    validation: (options.required ? { isRequired: true } : undefined) as RequiredValidation,
   });
   return serializingAs(field, (value: string | null) => (value === null ? undefined : raw(value)));
 };
@@ -181,7 +185,7 @@ const entryImage = (options: { label: string; description?: string; required?: b
   const field = fields.image({
     label: options.label,
     description: options.description,
-    validation: options.required ? { isRequired: true as const } : undefined,
+    validation: (options.required ? { isRequired: true } : undefined) as RequiredValidation,
     transformFilename: sanitizeFilename,
   });
   const stripPrefix = (value: unknown) =>
@@ -197,7 +201,7 @@ const entryImage = (options: { label: string; description?: string; required?: b
         suggestedFilenamePrefix: undefined,
       } as never);
       if (output.value === undefined) return output;
-      return { value: raw(`./${output.value}`), asset: output.asset };
+      return { value: raw(`./${output.value as string}`), asset: output.asset };
     },
     reader: { parse: (value: never) => field.reader.parse(stripPrefix(value) as never) },
   } as typeof field;
@@ -303,7 +307,7 @@ export default config({
               slug: value.slug,
               value: quoted(value.name),
             }),
-          } as typeof field;
+          } as unknown as typeof field;
         })(),
 
         excerpt: text({
