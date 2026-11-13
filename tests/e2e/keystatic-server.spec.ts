@@ -31,3 +31,25 @@ test("the admin page loads in the built blog", async ({ page }) => {
   const response = await page.goto("/keystatic");
   expect(response?.ok()).toBe(true);
 });
+
+test.describe("search engines are told not to index Keystatic", () => {
+  for (const path of [
+    "/keystatic",
+    "/keystatic/",
+    "/keystatic/collection/blog",
+    "/api/keystatic/github/login",
+    "/api/keystatic/tree",
+  ]) {
+    test(`${path} answers with X-Robots-Tag: noindex`, async ({ request }) => {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.headers()["x-robots-tag"]).toBe("noindex");
+    });
+  }
+
+  for (const path of ["/", "/about", "/blog/hello-there", "/rss.xml", "/keystatic-not-admin"]) {
+    test(`${path} is left indexable`, async ({ request }) => {
+      const response = await request.get(path, { maxRedirects: 0 });
+      expect(response.headers()["x-robots-tag"]).toBeUndefined();
+    });
+  }
+});
