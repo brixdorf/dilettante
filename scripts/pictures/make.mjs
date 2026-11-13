@@ -48,9 +48,23 @@ const stemOf = (file) =>
 const srcset = (files) =>
   files.map((file) => `${PICTURES_URL}${file.name} ${file.width}w`).join(", ");
 
+/** @typedef {{ name: string, width: number, bytes: number }} PictureFile */
+/**
+ * @typedef {{ type: string, extension: string, quality: number | "lossless", score?: number,
+ *   exact?: boolean, bytes: number, files: PictureFile[] }} PictureFormat
+ */
+/**
+ * @typedef {{ source: string, kind: "photo" | "lossless", width: number, height: number,
+ *   formats: PictureFormat[], sources: { type: string, srcset: string }[],
+ *   fallback: { type: string, src: string, srcset: string } }} PictureRecord
+ */
+
 /**
  * Makes (or reads back from the cache) every file for one image. Returns its record: its size,
  * every format made, and what the page offers ("sources", smallest first, then "fallback").
+ *
+ * @param {{ file: string, root: string, cacheDir: string }} options
+ * @returns {Promise<PictureRecord>}
  */
 export async function makePicture({ file, root, cacheDir }) {
   const bytes = readFileSync(file);
