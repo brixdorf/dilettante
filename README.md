@@ -86,7 +86,7 @@ Notes for future me, back after a break. Two words used below: **Dokploy** is th
 **Each month: update the blog**
 
 1. `pnpm install`, then `pnpm run lint` and `pnpm test` to make sure nothing broke while I was away.
-2. Update. Look up the newest stable version of each tool on its official site, run `pnpm outdated`, and update one package at a time (`pnpm add <name>@<version>`). Before a big version jump, read its upgrade guide. Each October, Node.js names a new LTS line (the long-term support version meant for real sites): move to it in `engines` in `package.json`.
+2. Update. Look up the newest stable version of each tool on its official site, run `pnpm outdated`, and update one package at a time (`pnpm add <name>@<version>`). Before a big version jump, read its upgrade guide. Each October, Node.js names a new LTS line (the long-term support version meant for real sites): move to it in `engines` in `package.json`. The `overrides` block in `pnpm-workspace.yaml` forces Keystatic onto minimatch 11 for a security fix: once `pnpm view @keystatic/core dependencies.minimatch` shows 11 or newer, delete that block and run `pnpm install`.
 3. **Keystatic needs js-yaml 4.** `keystatic.config.ts` changes how js-yaml writes the top of each post, and Keystatic uses js-yaml 4 itself, so both must share one copy. Never move `js-yaml` or `@types/js-yaml` to 5. After every install, `pnpm why js-yaml` must say "Found 1 version". `pnpm test` checks this too.
 4. Build and test: `pnpm run smoke`, and before a bigger change `pnpm run test:browsers` (in the toolbox on Fedora).
 5. Look at it myself with `pnpm dev`, including `/keystatic`.
