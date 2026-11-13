@@ -1,6 +1,6 @@
 // Tests which storage mode Keystatic picks. Locally (pnpm dev) it must save posts as files on disk
 // and never talk to GitHub; the built blog on the live site saves through GitHub.
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 
 const loadConfig = async () => (await import("../../keystatic.config.ts")).default;
 

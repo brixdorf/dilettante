@@ -5,3 +5,10 @@ saveExact: true
 
 # pnpm runs no package's install script unless it is named here under "allowBuilds", and stops
 # if a package asks to run one. None of this blog's packages needs one.
+
+# Vite+ (formatting, linting, tests) brings its own build of Vite; Astro keeps its own Vite for
+# building the blog. Vitest asks for a Vite version and would warn about the mix; this tells pnpm
+# that is fine.
+peerDependencyRules:
+  allowAny:
+    - vite

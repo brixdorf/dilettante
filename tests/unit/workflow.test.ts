@@ -3,14 +3,14 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { load } from "js-yaml";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 type Step = { uses?: string; run?: string; with?: Record<string, string> };
 
 const root = join(import.meta.dirname, "..", "..");
-const workflow = load(
-  readFileSync(join(root, ".github/workflows/sync-taxonomy.yml"), "utf8"),
-) as { jobs: { sync: { steps: Step[] } } };
+const workflow = load(readFileSync(join(root, ".github/workflows/sync-taxonomy.yml"), "utf8")) as {
+  jobs: { sync: { steps: Step[] } };
+};
 const steps = workflow.jobs.sync.steps;
 const step = (action: string) => steps.find((s) => s.uses?.startsWith(`${action}@`));
 const runs = steps.map((s) => s.run).filter(Boolean);

@@ -10,10 +10,11 @@
     "build": "astro build && node scripts/prune-unused-assets.mjs",
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
-    "format": "prettier --write .",
-    "test": "vitest run",
+    "format": "vp check --fix",
+    "test": "vp test",
     "test:browsers": "playwright test",
-    "smoke": "playwright test --project=chromium --project=keystatic"
+    "smoke": "playwright test --project=chromium --project=keystatic",
+    "lint": "vp check"
   },
   "dependencies": {
     "@astrojs/mdx": "8.1.5",
@@ -33,9 +34,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
-    "prettier": "3.10.1",
-    "vite": "8.3.8",
-    "vitest": "5.1.0"
+    "vite-plus": "1.6.0"
   },
   "engines": {
     "node": "26.x"
