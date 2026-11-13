@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.65.0",
+    "@types/node": "26.6.6",
     "vite-plus": "1.6.0"
   },
   "engines": {
