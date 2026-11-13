@@ -45,7 +45,7 @@ export default defineConfig({
     {
       // Keystatic's settings reach the running server only, as on the live site.
       command:
-        "npm run build && node --env-file=tests/e2e/keystatic-test.env ./dist/server/entry.mjs",
+        "pnpm run build && node --env-file=tests/e2e/keystatic-test.env ./dist/server/entry.mjs",
       url: `http://127.0.0.1:${SITE_PORT}/`,
       env: { HOST: "127.0.0.1", PORT: String(SITE_PORT) },
       timeout: 300_000,
@@ -53,7 +53,7 @@ export default defineConfig({
       stdout: "ignore",
     },
     {
-      command: `npx astro dev --host 127.0.0.1 --port ${DEV_PORT}`,
+      command: `pnpm exec astro dev --host 127.0.0.1 --port ${DEV_PORT}`,
       url: `http://127.0.0.1:${DEV_PORT}/`,
       timeout: 120_000,
       reuseExistingServer: false,

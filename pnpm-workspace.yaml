@@ -1,0 +1,7 @@
+# Settings for pnpm, the package manager.
+
+# Write exact version numbers into package.json (7.4.11, not ^7.4.11), so every install is the same.
+saveExact: true
+
+# pnpm runs no package's install script unless it is named here under "allowBuilds", and stops
+# if a package asks to run one. None of this blog's packages needs one.
