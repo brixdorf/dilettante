@@ -25,7 +25,7 @@ export const findImages = (root) => {
   };
   walk(join(root, "src", "content", "blog"));
   walk(join(root, "src", "assets"));
-  return found.sort();
+  return found.sort((a, b) => (a < b ? -1 : a > b ? 1 : 0));
 };
 
 const readManifest = (root) =>

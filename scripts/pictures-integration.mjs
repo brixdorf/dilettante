@@ -77,12 +77,12 @@ export default function pictures() {
             .catch((error) => logger.warn(error.message));
           return running;
         };
-        prepare(findImages(root), true);
+        void prepare(findImages(root), true);
 
         const blogDir = join(root, "src", "content", "blog");
         server.watcher.on("add", (path) => {
           const file = String(path);
-          if (file.startsWith(blogDir) && IMAGE.test(file)) prepare([file], false);
+          if (file.startsWith(blogDir) && IMAGE.test(file)) void prepare([file], false);
         });
       },
     },
