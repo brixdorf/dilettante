@@ -268,10 +268,11 @@ const postBody = () => {
 };
 
 export default config({
-  storage: {
-    kind: "github",
-    repo: "brixdorf/dilettante",
-  },
+  // Locally (pnpm dev) Keystatic saves posts as files on disk. The built blog on the live site saves
+  // through GitHub, as commits to the repository.
+  storage: import.meta.env.PROD
+    ? { kind: "github", repo: "brixdorf/dilettante" }
+    : { kind: "local" },
   ui: {
     brand: { name: "A Dilettante's Journal" },
   },
