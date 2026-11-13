@@ -44,6 +44,18 @@ test("the admin lists the five posts", async ({ page }) => {
   }
 });
 
+test("the admin lists the posts by published date, oldest first", async ({ page }) => {
+  const dateOf = (slug: string) =>
+    /^date: (\S+)$/m.exec(readFileSync(join(blogDir, slug, "index.mdx"), "utf8"))![1];
+  const byDate = realPosts().sort((a, b) => dateOf(a).localeCompare(dateOf(b)));
+
+  await page.goto("/keystatic/collection/blog");
+  await expect(page.getByText(byDate[0], { exact: true })).toBeVisible();
+  const rows = await page.getByRole("row").allInnerTexts();
+  const listed = rows.flatMap((row) => row.split(/\s+/).filter((word) => byDate.includes(word)));
+  expect(listed).toEqual(byDate);
+});
+
 for (const slug of realPosts()) {
   test(`saving "${slug}" writes the file back exactly as it was, apart from the edit`, async ({
     page,

@@ -3,8 +3,11 @@
 // blog's own build settings are in astro.config.mjs. The browser tests in tests/e2e run with
 // Playwright (playwright.config.ts).
 import { defineConfig } from "vite-plus";
+import postDates from "./scripts/post-dates.mjs";
 
 export default defineConfig({
+  // keystatic.config.ts, which the unit tests load, imports the post dates this makes.
+  plugins: [postDates()],
   lint: {
     jsPlugins: [{ name: "vite-plus", specifier: "vite-plus/oxlint-plugin" }],
     rules: { "vite-plus/prefer-vite-plus-imports": "error" },

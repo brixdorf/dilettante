@@ -1,5 +1,6 @@
 import { collection, config, fields } from "@keystatic/core";
 import { DEFAULT_SCHEMA, Type } from "js-yaml";
+import postDates from "virtual:post-dates";
 import { authors } from "./src/config/authors.ts";
 
 const BLOG_DIRECTORY = "src/content/blog";
@@ -306,6 +307,10 @@ export default config({
       entryLayout: "content",
       columns: ["date", "category"],
       previewUrl: "/blog/{slug}",
+      // Keystatic always opens this list sorted by slug, smallest first. Comparing each post's
+      // published date instead lists the oldest post first and the newest last. A post the dates
+      // were not read for, such as one just made on the live site, comes last until the next build.
+      parseSlugForSort: (slug) => postDates[slug] ?? Number.POSITIVE_INFINITY,
 
       schema: {
         title: (() => {

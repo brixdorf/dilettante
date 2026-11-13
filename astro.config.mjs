@@ -7,6 +7,7 @@ import node from "@astrojs/node";
 import keystatic from "@keystatic/astro";
 import taxonomySync from "./scripts/taxonomy-sync-integration.mjs";
 import pictures from "./scripts/pictures-integration.mjs";
+import postDates from "./scripts/post-dates.mjs";
 import { siteConfig } from "./src/config/site.ts";
 
 const site = siteConfig.siteUrl;
@@ -35,7 +36,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), postDates()],
     build: {
       // The Keystatic admin is one large script (about 2.7 MB) that loads only on /keystatic.
       // Every page visitors see ships far less, so Vite warns only above this size.
