@@ -155,10 +155,8 @@ test.describe("the OpenPGP card on the Contact page", () => {
     await expect(card).toContainText("Ed25519 (signing) and Curve25519 (encryption)");
     await expect(card).toContainText("Expires");
     await expect(card.locator('time[datetime="2029-09-28"]')).toHaveText("2029-09-28");
-    await expect(card.getByRole("link", { name: "keys.openpgp.org" })).toHaveAttribute(
-      "href",
-      /^https:\/\/keys\.openpgp\.org\//,
-    );
+    await expect(card).not.toContainText("keys.openpgp.org");
+    await expect(card.locator("a[href*='keys.openpgp.org']")).toHaveCount(0);
   });
 
   test("offers the key for download", async ({ page, request }) => {
