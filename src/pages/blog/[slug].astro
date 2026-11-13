@@ -1,5 +1,6 @@
 ---
-import { Image, getImage } from "astro:assets";
+import { getImage } from "astro:assets";
+import Picture from "@/components/ui/Picture.astro";
 import { render } from "astro:content";
 import AuthorNote from "@/components/blog/AuthorNote.astro";
 import Avatar from "@/components/blog/Avatar.astro";
@@ -9,6 +10,7 @@ import ShareSheet from "@/components/blog/ShareSheet.astro";
 import Lightbox from "@/components/blog/Lightbox.astro";
 import TableOfContents from "@/components/blog/TableOfContents.astro";
 import Figure from "@/components/mdx/Figure.astro";
+import MarkdownImage from "@/components/mdx/MarkdownImage.astro";
 import Icon from "@/components/ui/Icon.astro";
 import { siteConfig } from "@/config/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -155,12 +157,10 @@ const schema = withBreadcrumbs(
 
     <figure class="shell max-w-[calc(66rem+2*var(--gutter))]">
       <div class="media shadow-[var(--shadow-card)]">
-        <Image
+        <Picture
           src={post.thumbnail}
           alt={post.thumbnailAlt}
-          widths={[640, 960, 1280, 1600]}
           sizes="(min-width: 70rem) 66rem, 94vw"
-          quality={72}
           loading="eager"
           fetchpriority="high"
           class="aspect-[16/9] w-full"
@@ -184,7 +184,7 @@ const schema = withBreadcrumbs(
     <div class="shell mt-14 grid grid-cols-[minmax(0,1fr)] gap-12 sm:mt-20 xl:grid-cols-[1fr_minmax(0,42rem)_1fr]">
       <div class="mx-auto w-full min-w-0 max-w-[42rem] xl:col-start-2">
         <div class="prose-article" data-prose>
-          <Content components={{ Figure }} />
+          <Content components={{ Figure, img: MarkdownImage }} />
         </div>
 
         {post.tags.length > 0 && (

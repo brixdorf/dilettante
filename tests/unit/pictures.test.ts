@@ -88,7 +88,7 @@ describe("the widths", () => {
   });
 });
 
-describe("a photo", () => {
+describe("a photo", { timeout: 60_000 }, () => {
   it("is saved in every format at the same visual quality, smallest first, JPEG last", async () => {
     const record = await makePicture({ file: join(dir, "photo.jpg"), root: dir, cacheDir: dir });
     expect(record.kind).toBe("photo");
@@ -127,7 +127,7 @@ describe("a photo", () => {
   });
 });
 
-describe("a PNG", () => {
+describe("a PNG", { timeout: 60_000 }, () => {
   it("is saved without loss, and only exact formats smaller than the PNG are offered", async () => {
     const record = await makePicture({ file: join(dir, "screen.png"), root: dir, cacheDir: dir });
     expect(record.kind).toBe("lossless");

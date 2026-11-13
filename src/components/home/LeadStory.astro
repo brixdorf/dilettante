@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Picture from "@/components/ui/Picture.astro";
 import Avatar from "@/components/blog/Avatar.astro";
 import Icon from "@/components/ui/Icon.astro";
 import {
@@ -24,12 +24,10 @@ const category = getCategory(post.category);
 <section class="shell mt-20 sm:mt-28" aria-label="Featured post">
   <article class="group relative grid items-center gap-8 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
     <div class="media aspect-[4/3] shadow-[var(--shadow-card)]">
-      <Image
+      <Picture
         src={post.thumbnail}
         alt=""
-        widths={[480, 720, 960, 1280]}
         sizes="(min-width: 64rem) 40rem, 92vw"
-        quality={76}
       />
     </div>
     <div>

@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Picture from "@/components/ui/Picture.astro";
 import Avatar from "@/components/blog/Avatar.astro";
 import {
   categoryUrl,
@@ -45,12 +45,10 @@ const searchable = [
   hidden={hidden}
 >
   <div class="media aspect-[3/2]">
-    <Image
+    <Picture
       src={post.thumbnail}
       alt=""
-      widths={[400, 640, 880]}
       sizes="(min-width: 64rem) 24rem, (min-width: 40rem) 45vw, 92vw"
-      quality={72}
       loading={eager ? "eager" : "lazy"}
     />
   </div>

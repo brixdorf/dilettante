@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Picture from "@/components/ui/Picture.astro";
 import type { Author } from "@/config/authors";
 
 interface Props {
@@ -13,7 +13,7 @@ const { author, size = 28, class: className } = Astro.props;
 const classes = ["shrink-0 rounded-full bg-sunken object-cover", className];
 ---
 
-{/* A drawing in public/ (an SVG) is used as it is; a photo goes through Astro's image pipeline. */}
+{/* A drawing in public/ (an SVG) is used as it is; a photo goes through the picture maker. */}
 {typeof author.avatar === "string" ? (
   <img
     src={author.avatar}
@@ -24,13 +24,10 @@ const classes = ["shrink-0 rounded-full bg-sunken object-cover", className];
     style={`width:${size}px;height:${size}px`}
   />
 ) : (
-  <Image
+  <Picture
     src={author.avatar}
     alt=""
-    width={size}
-    height={size}
-    densities={[1, 2]}
-    quality={80}
+    sizes={`${size}px`}
     class:list={classes}
     style={`width:${size}px;height:${size}px`}
   />

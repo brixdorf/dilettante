@@ -34,18 +34,32 @@ import Icon from "@/components/ui/Icon.astro";
 <script>
   const dialog = document.querySelector<HTMLDialogElement>("[data-lightbox-dialog]");
 
-  /* Plain Markdown images get the same treatment as a Figure, so writers never need a component. */
-  document.querySelectorAll<HTMLImageElement>("[data-prose] p > img").forEach((image) => {
+  /* Plain Markdown images get the same treatment as a Figure, so writers never need a component.
+     Each is a <picture> (src/components/mdx/MarkdownImage.astro), wrapped whole. */
+  document.querySelectorAll<HTMLElement>("[data-prose] p > picture, [data-prose] p > img").forEach((frame) => {
+    const image = frame instanceof HTMLImageElement ? frame : frame.querySelector("img");
+    if (!image) return;
     const button = document.createElement("button");
     button.type = "button";
     button.className = "figure-frame";
     button.dataset.lightbox = "";
-    button.dataset.lightboxSrc = image.currentSrc || image.src;
+    button.dataset.lightboxPicture = "";
     button.dataset.lightboxAlt = image.alt;
     button.setAttribute("aria-label", `Enlarge image: ${image.alt || "image"}`);
-    image.replaceWith(button);
-    button.append(image);
+    frame.replaceWith(button);
+    button.append(frame);
   });
+
+  /* The lightbox shows a <picture> in the format the browser already picked for it on the page,
+     with every width of that format to choose from. */
+  const pictureSource = (trigger: HTMLElement) => {
+    const image = trigger.querySelector("img");
+    if (!image) return { src: "", srcset: "" };
+    const chosen = new URL(image.currentSrc || image.src, location.href).pathname;
+    const sets = [...trigger.querySelectorAll("source")].map((source) => source.srcset);
+    const srcset = sets.find((set) => set.includes(chosen)) ?? image.srcset;
+    return { src: chosen, srcset };
+  };
 
   if (dialog && typeof dialog.showModal === "function") {
     const img = dialog.querySelector<HTMLImageElement>("[data-lightbox-img]")!;
@@ -57,6 +71,13 @@ import Icon from "@/components/ui/Icon.astro";
     let index = 0;
 
     const assign = (target: HTMLImageElement, trigger: HTMLElement) => {
+      if (trigger.dataset.lightboxPicture !== undefined) {
+        const { src, srcset } = pictureSource(trigger);
+        target.sizes = "100vw";
+        target.srcset = srcset;
+        target.src = src;
+        return;
+      }
       const srcset = trigger.dataset.lightboxSrcset;
       if (srcset) {
         target.sizes = "100vw";

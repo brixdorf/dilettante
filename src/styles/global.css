@@ -143,6 +143,11 @@
 }
 
 @layer base {
+  /* A <picture> adds no box of its own: its image sizes and positions as if it stood alone. */
+  picture {
+    display: contents;
+  }
+
   html {
     scroll-padding-top: calc(var(--header-h) + 1.5rem);
     -webkit-text-size-adjust: 100%;

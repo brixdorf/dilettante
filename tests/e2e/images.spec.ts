@@ -14,7 +14,8 @@ test("every picture on every page is a <picture> ending in its original format",
   const problems: string[] = [];
   for (const path of builtPages()) {
     await page.goto(path);
-    const images = await page.$$eval("main img, header img", (list) =>
+    // The lightbox's empty viewer is filled only when it opens, from a picture on the page.
+    const images = await page.$$eval("main img:not([data-lightbox-img]), header img", (list) =>
       list.map((img) => ({
         src: img.getAttribute("src") ?? "",
         width: img.getAttribute("width"),

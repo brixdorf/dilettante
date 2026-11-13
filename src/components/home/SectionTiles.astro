@@ -1,5 +1,5 @@
 ---
-import { Image } from "astro:assets";
+import Picture from "@/components/ui/Picture.astro";
 import Icon from "@/components/ui/Icon.astro";
 import { categories } from "@/config/taxonomy";
 import { categoryUrl, plural, type Post } from "@/lib/posts";
@@ -44,12 +44,10 @@ const sections = categories
         <a href={categoryUrl(section.slug)} class="group block">
           <div class="media relative aspect-[3/4]">
             {section.cover && (
-              <Image
+              <Picture
                 src={section.cover}
                 alt=""
-                widths={[320, 480, 640]}
                 sizes="(min-width: 64rem) 15rem, 70vw"
-                quality={70}
               />
             )}
             <div class="tile-shade absolute inset-0" aria-hidden="true"></div>
