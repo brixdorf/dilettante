@@ -6,6 +6,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import TableOfContents from "../../components/TableOfContents.astro";
 import PostCard from "../../components/PostCard.astro";
 import Icon from "../../components/Icon.astro";
+import { COMMENTS } from "../../config/theme.config.ts";
 import {
   SITE,
   getAuthor,
@@ -49,6 +50,7 @@ const socialImage = post.thumbnail
   : undefined;
 const thumbnailUrl = socialImage ? new URL(socialImage.src, SITE.url).toString() : undefined;
 const shareUrl = canonicalUrl;
+const liveHost = new URL(SITE.url).hostname;
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -231,16 +233,19 @@ const jsonLd = {
         <div class="mt-12 rounded-md border border-dashed border-border p-8 text-center">
           <Icon name="message" class="mx-auto h-5 w-5 text-muted-foreground" />
           <div class="mt-2 font-serif text-lg">Comments</div>
-          <script is:inline>
-            var remark_config = {
-              host: "https://comments.romitraj.dev",
-              site_id: "dilettante",
-              theme: document.documentElement.classList.contains("dark") ? "dark" : "light",
-              no_footer: true
-            };
-          </script>
-          <script is:inline>
-            !function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),c=".js",d=n.head||n.body;"noModule"in r?(r.type="module",c=".mjs"):r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+c,d.appendChild(r)}}(remark_config.components||["embed"],document);
+          <script
+            is:inline
+            define:vars={{ liveHost, commentsHost: COMMENTS.host, commentsSiteId: COMMENTS.siteId }}
+          >
+            if (location.hostname === liveHost) {
+              window.remark_config = {
+                host: commentsHost,
+                site_id: commentsSiteId,
+                theme: document.documentElement.classList.contains("dark") ? "dark" : "light",
+                no_footer: true,
+              };
+              !function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),c=".js",d=n.head||n.body;"noModule"in r?(r.type="module",c=".mjs"):r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+c,d.appendChild(r)}}(remark_config.components||["embed"],document);
+            }
           </script>
           <div id="remark42">Comments are loading...</div>
         </div>

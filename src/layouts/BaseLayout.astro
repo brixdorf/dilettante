@@ -3,6 +3,7 @@ import "../styles.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE, imageSrc } from "../lib/blog-data.js";
+import { ANALYTICS } from "../config/theme.config.ts";
 
 const {
   title = `${SITE.name}`,
@@ -27,7 +28,7 @@ const absoluteUrl = (value) => {
 };
 const canonicalUrl = absoluteUrl(canonical || Astro.url.pathname);
 const ogImageUrl = absoluteUrl(ogImage);
-const rybbitSiteId = "baf839ddf444";
+const liveHost = new URL(SITE.url).hostname;
 ---
 
 <!doctype html>
@@ -82,13 +83,19 @@ const rybbitSiteId = "baf839ddf444";
       })();
     </script>
 
-    <!-- Rybbit Tracking Snippet -->
+    <!-- Rybbit analytics, on the live site only -->
     <script
-      src="https://analytics.romitraj.dev/api/script.js"
-      data-site-id={rybbitSiteId}
-      defer
-    ></script>
-    
+      is:inline
+      define:vars={{ liveHost, scriptUrl: ANALYTICS.scriptUrl, siteId: ANALYTICS.siteId }}
+    >
+      if (location.hostname === liveHost) {
+        var rybbit = document.createElement("script");
+        rybbit.src = scriptUrl;
+        rybbit.defer = true;
+        rybbit.dataset.siteId = siteId;
+        document.head.appendChild(rybbit);
+      }
+    </script>
   </head>
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>

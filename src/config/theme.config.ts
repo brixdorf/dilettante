@@ -14,6 +14,18 @@ export const SITE = {
   repositoryUrl: "https://github.com/brixdorf/dilettante",
 };
 
+// Rybbit analytics and Remark42 comments run on Romit's own servers. They load only when the page
+// is on the live site (SITE.url), never locally.
+export const ANALYTICS = {
+  scriptUrl: "https://analytics.romitraj.dev/api/script.js",
+  siteId: "baf839ddf444",
+};
+
+export const COMMENTS = {
+  host: "https://comments.romitraj.dev",
+  siteId: "dilettante",
+};
+
 export const NAVIGATION = [
   { to: "/", label: "Home" },
   { to: "/blog", label: "Writing" },
