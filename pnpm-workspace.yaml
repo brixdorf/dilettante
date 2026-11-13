@@ -12,3 +12,9 @@ saveExact: true
 peerDependencyRules:
   allowAny:
     - vite
+
+# Security fix: minimatch before 11.0.1 can be slowed to a halt by some patterns (GHSA-g3hv-75wg-m249).
+# Keystatic still asks for minimatch 10, which has no fix, and uses only its "filter", which works
+# the same in 11. Remove this once Keystatic asks for minimatch 11 or newer.
+overrides:
+  "@keystatic/core>minimatch": 11.0.8
