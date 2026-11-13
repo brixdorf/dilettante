@@ -23,6 +23,11 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // The Keystatic admin is one large script (about 2.7 MB) that loads only on /keystatic.
+      // Every page visitors see ships far less, so Vite warns only above this size.
+      chunkSizeWarningLimit: 3000,
+    },
   },
 
   adapter: node({
