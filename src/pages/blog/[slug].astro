@@ -244,7 +244,20 @@ const jsonLd = {
                 theme: document.documentElement.classList.contains("dark") ? "dark" : "light",
                 no_footer: true,
               };
-              !function(e,n){for(var o=0;o<e.length;o++){var r=n.createElement("script"),c=".js",d=n.head||n.body;"noModule"in r?(r.type="module",c=".mjs"):r.async=!0,r.defer=!0,r.src=remark_config.host+"/web/"+e[o]+c,d.appendChild(r)}}(remark_config.components||["embed"],document);
+              // Remark42's loader: the module build for current browsers, the plain one otherwise.
+              (window.remark_config.components || ["embed"]).forEach(function (component) {
+                var script = document.createElement("script");
+                var extension = ".js";
+                if ("noModule" in script) {
+                  script.type = "module";
+                  extension = ".mjs";
+                } else {
+                  script.async = true;
+                }
+                script.defer = true;
+                script.src = window.remark_config.host + "/web/" + component + extension;
+                (document.head || document.body).appendChild(script);
+              });
             }
           </script>
           <div id="remark42">Comments are loading...</div>
