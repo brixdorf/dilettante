@@ -1,6 +1,6 @@
 ---
 import Picture from "@/components/ui/Picture.astro";
-import heroImage from "@/assets/hero-mist.jpg";
+import heroImage from "@/assets/autumn-scene.webp";
 import Icon from "@/components/ui/Icon.astro";
 import { homeConfig } from "@/config/home";
 import { postUrl, type Post } from "@/lib/posts";
@@ -21,7 +21,7 @@ const parts = hero.title.split(/(\*[^*]+\*)/).filter(Boolean);
     sizes="100vw"
     loading="eager"
     fetchpriority="high"
-    class="hero-image absolute inset-0 -z-10 size-full object-cover object-bottom"
+    class="hero-image absolute inset-0 -z-10 size-full object-cover object-center"
   />
   <div class="hero-shade absolute inset-0 -z-10" aria-hidden="true"></div>
 
@@ -53,15 +53,17 @@ const parts = hero.title.split(/(\*[^*]+\*)/).filter(Boolean);
 </section>
 
 <style>
-  /* The photograph's mist matches the canvas, so the type sits in it; the shade keeps that
-     true on narrow screens, where the hills climb higher. */
+  /* This photograph is busier than the theme's misty hills, with peaks behind the headline, so
+     the fade into the canvas runs further down: the type sits in a pale mist, and the lake and
+     the autumn trees show below the buttons. */
   .hero-shade {
     background: linear-gradient(
       to bottom,
       var(--canvas) 0%,
-      color-mix(in oklab, var(--canvas) 92%, transparent) 42%,
-      color-mix(in oklab, var(--canvas) 62%, transparent) 60%,
-      transparent 82%
+      color-mix(in oklab, var(--canvas) 94%, transparent) 46%,
+      color-mix(in oklab, var(--canvas) 86%, transparent) 64%,
+      color-mix(in oklab, var(--canvas) 35%, transparent) 84%,
+      transparent 100%
     );
   }
 
@@ -73,8 +75,9 @@ const parts = hero.title.split(/(\*[^*]+\*)/).filter(Boolean);
     background: linear-gradient(
       to bottom,
       var(--canvas) 0%,
-      color-mix(in oklab, var(--canvas) 82%, transparent) 42%,
-      color-mix(in oklab, var(--canvas) 30%, transparent) 100%
+      color-mix(in oklab, var(--canvas) 90%, transparent) 46%,
+      color-mix(in oklab, var(--canvas) 78%, transparent) 64%,
+      color-mix(in oklab, var(--canvas) 35%, transparent) 100%
     );
   }
 </style>
