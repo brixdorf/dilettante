@@ -6,8 +6,7 @@ const siteUrl = (
 
 export const SITE = {
   name: "A Dilettante's Journal",
-  description:
-    "A digital recollection of my ramblings",
+  description: "A digital recollection of my ramblings",
   url: siteUrl,
   locale: "en-US",
   language: "en",
