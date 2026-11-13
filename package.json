@@ -10,7 +10,10 @@
     "build": "astro build && node scripts/prune-unused-assets.mjs",
     "preview": "astro preview",
     "start": "node ./dist/server/entry.mjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:browsers": "playwright test",
+    "smoke": "playwright test --project=chromium --project=keystatic"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.3",
@@ -29,7 +32,9 @@
     "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.0",
     "prettier": "^3.8.4",
-    "vite": "^8.1.2"
+    "vite": "^8.1.2",
+    "vitest": "5.1.0"
   }
 }
