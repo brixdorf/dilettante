@@ -368,8 +368,7 @@ export default config({
 
         category: text({
           label: "Category",
-          description:
-            "Category slug, e.g. “engineering”. Matches an entry in src/config/taxonomy.ts.",
+          description: "The section this post belongs to, e.g. “tech” or “life”.",
           required: true,
         }),
 
@@ -381,7 +380,7 @@ export default config({
 
         author: choice({
           label: "Author",
-          description: "Author slug, e.g. “romit”. Matches an entry in src/config/authors.ts.",
+          description: "Who wrote this post.",
           options: authors.map((author) => ({ label: author.name, value: author.slug })),
         }),
 

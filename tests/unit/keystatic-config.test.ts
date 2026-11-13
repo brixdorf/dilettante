@@ -33,6 +33,16 @@ describe("Keystatic's post fields match the blog's content rules", () => {
     expect(author.options.map((option) => option.value)).toEqual(authors.map((item) => item.slug));
   });
 
+  it("explains the author and category in plain words, without file names", async () => {
+    const { schema } = (await loadConfig()).collections!.blog;
+    // Keystatic hands a field's help text only to the input it draws in the admin.
+    const help = (field: unknown) =>
+      (field as { Input: (props: object) => { props: { description?: string } } }).Input({}).props
+        .description;
+    expect(help(schema.author)).toBe("Who wrote this post.");
+    expect(help(schema.category)).toBe("The section this post belongs to, e.g. “tech” or “life”.");
+  });
+
   it("requires alt text for the thumbnail", async () => {
     const alt = (await loadConfig()).collections!.blog.schema.thumbnailAlt as unknown as {
       validate: (value: string) => unknown;
