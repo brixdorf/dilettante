@@ -6,6 +6,7 @@ import react from "@astrojs/react";
 import node from "@astrojs/node";
 import keystatic from "@keystatic/astro";
 import taxonomySync from "./scripts/taxonomy-sync-integration.mjs";
+import pictures from "./scripts/pictures-integration.mjs";
 import { siteConfig } from "./src/config/site.ts";
 
 const site = siteConfig.siteUrl;
@@ -25,7 +26,7 @@ export default defineConfig({
     ],
   },
 
-  integrations: [mdx(), react(), keystatic(), taxonomySync()],
+  integrations: [mdx(), react(), keystatic(), taxonomySync(), pictures()],
 
   markdown: {
     shikiConfig: {
