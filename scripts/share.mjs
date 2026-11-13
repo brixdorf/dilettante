@@ -22,10 +22,21 @@ const siteConfig = readFileSync(join(root, "src", "config", "site.ts"), "utf8");
 const headline = /title:\s*"([^"]+)"/.exec(homeConfig)[1];
 const name = /name:\s*"([^"]+)"/.exec(siteConfig)[1];
 const address = new URL(/siteUrl:\s*"([^"]+)"/.exec(siteConfig)[1]).host;
+// The home page's photo, as Hero.astro imports it.
+const heroPhoto = join(
+  "src",
+  /from "@\/(assets\/[^"]+)"/.exec(
+    readFileSync(join(root, "src/components/home/Hero.astro"), "utf8"),
+  )[1],
+);
 
 // Fonts and the photo go into the page itself, which cannot load local files.
 const file = (path) => {
-  const type = path.endsWith(".woff2") ? "font/woff2" : "image/jpeg";
+  const type = path.endsWith(".woff2")
+    ? "font/woff2"
+    : path.endsWith(".webp")
+      ? "image/webp"
+      : "image/jpeg";
   return `data:${type};base64,${readFileSync(join(root, path)).toString("base64")}`;
 };
 const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -49,7 +60,7 @@ const card = ({ width, height }) => `<!doctype html>
   em { font-style: italic; }
   .address { position: absolute; bottom: ${height * 0.07}px; left: 0; right: 0; text-align: center; font-size: ${height * 0.032}px; color: #fbfdfe; letter-spacing: 0.02em; }
 </style></head><body>
-  <img class="photo" src="${file("src/assets/hero-mist.jpg")}" alt="">
+  <img class="photo" src="${file(heroPhoto)}" alt="">
   <div class="shade"></div>
   <div class="content">
     <div class="name">${escape(name)}</div>
