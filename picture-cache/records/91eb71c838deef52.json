@@ -1,0 +1,150 @@
+{
+  "kind": "lossless",
+  "width": 1920,
+  "height": 1020,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 666964,
+      "files": [
+        {
+          "name": "hashnode-screenshot-91eb71c8-320.jxl",
+          "width": 320,
+          "bytes": 16947
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-480.jxl",
+          "width": 480,
+          "bytes": 30165
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-640.jxl",
+          "width": 640,
+          "bytes": 49191
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-960.jxl",
+          "width": 960,
+          "bytes": 93821
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1280.jxl",
+          "width": 1280,
+          "bytes": 148216
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1600.jxl",
+          "width": 1600,
+          "bytes": 203781
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1920.jxl",
+          "width": 1920,
+          "bytes": 124843
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 1076935,
+      "files": [
+        {
+          "name": "hashnode-screenshot-91eb71c8-320.avif",
+          "width": 320,
+          "bytes": 26212
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-480.avif",
+          "width": 480,
+          "bytes": 46936
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-640.avif",
+          "width": 640,
+          "bytes": 73662
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-960.avif",
+          "width": 960,
+          "bytes": 140071
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1280.avif",
+          "width": 1280,
+          "bytes": 213217
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1600.avif",
+          "width": 1600,
+          "bytes": 298085
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1920.avif",
+          "width": 1920,
+          "bytes": 278752
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 860730,
+      "files": [
+        {
+          "name": "hashnode-screenshot-91eb71c8-320.png",
+          "width": 320,
+          "bytes": 25316
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-480.png",
+          "width": 480,
+          "bytes": 45175
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-640.png",
+          "width": 640,
+          "bytes": 69166
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-960.png",
+          "width": 960,
+          "bytes": 126481
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1280.png",
+          "width": 1280,
+          "bytes": 192295
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1600.png",
+          "width": 1600,
+          "bytes": 271956
+        },
+        {
+          "name": "hashnode-screenshot-91eb71c8-1920.png",
+          "width": 1920,
+          "bytes": 130341
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/hashnode-screenshot-91eb71c8-320.jxl 320w, /_pictures/hashnode-screenshot-91eb71c8-480.jxl 480w, /_pictures/hashnode-screenshot-91eb71c8-640.jxl 640w, /_pictures/hashnode-screenshot-91eb71c8-960.jxl 960w, /_pictures/hashnode-screenshot-91eb71c8-1280.jxl 1280w, /_pictures/hashnode-screenshot-91eb71c8-1600.jxl 1600w, /_pictures/hashnode-screenshot-91eb71c8-1920.jxl 1920w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/hashnode-screenshot-91eb71c8-960.png",
+    "srcset": "/_pictures/hashnode-screenshot-91eb71c8-320.png 320w, /_pictures/hashnode-screenshot-91eb71c8-480.png 480w, /_pictures/hashnode-screenshot-91eb71c8-640.png 640w, /_pictures/hashnode-screenshot-91eb71c8-960.png 960w, /_pictures/hashnode-screenshot-91eb71c8-1280.png 1280w, /_pictures/hashnode-screenshot-91eb71c8-1600.png 1600w, /_pictures/hashnode-screenshot-91eb71c8-1920.png 1920w"
+  }
+}

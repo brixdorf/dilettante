@@ -1,0 +1,154 @@
+{
+  "kind": "photo",
+  "width": 1920,
+  "height": 1280,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 98,
+      "score": 0.9962084181320344,
+      "bytes": 914429,
+      "files": [
+        {
+          "name": "freedom-e1bf6904-320.jxl",
+          "width": 320,
+          "bytes": 16358
+        },
+        {
+          "name": "freedom-e1bf6904-480.jxl",
+          "width": 480,
+          "bytes": 31548
+        },
+        {
+          "name": "freedom-e1bf6904-640.jxl",
+          "width": 640,
+          "bytes": 51952
+        },
+        {
+          "name": "freedom-e1bf6904-960.jxl",
+          "width": 960,
+          "bytes": 117454
+        },
+        {
+          "name": "freedom-e1bf6904-1280.jxl",
+          "width": 1280,
+          "bytes": 175458
+        },
+        {
+          "name": "freedom-e1bf6904-1600.jxl",
+          "width": 1600,
+          "bytes": 254523
+        },
+        {
+          "name": "freedom-e1bf6904-1920.jxl",
+          "width": 1920,
+          "bytes": 267136
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 95,
+      "score": 0.9950951425128072,
+      "bytes": 846411,
+      "files": [
+        {
+          "name": "freedom-e1bf6904-320.avif",
+          "width": 320,
+          "bytes": 17272
+        },
+        {
+          "name": "freedom-e1bf6904-480.avif",
+          "width": 480,
+          "bytes": 34516
+        },
+        {
+          "name": "freedom-e1bf6904-640.avif",
+          "width": 640,
+          "bytes": 54675
+        },
+        {
+          "name": "freedom-e1bf6904-960.avif",
+          "width": 960,
+          "bytes": 108340
+        },
+        {
+          "name": "freedom-e1bf6904-1280.avif",
+          "width": 1280,
+          "bytes": 172916
+        },
+        {
+          "name": "freedom-e1bf6904-1600.avif",
+          "width": 1600,
+          "bytes": 247925
+        },
+        {
+          "name": "freedom-e1bf6904-1920.avif",
+          "width": 1920,
+          "bytes": 210767
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 99,
+      "score": 0.9965189484322127,
+      "bytes": 1343641,
+      "files": [
+        {
+          "name": "freedom-e1bf6904-320.jpg",
+          "width": 320,
+          "bytes": 26438
+        },
+        {
+          "name": "freedom-e1bf6904-480.jpg",
+          "width": 480,
+          "bytes": 51656
+        },
+        {
+          "name": "freedom-e1bf6904-640.jpg",
+          "width": 640,
+          "bytes": 85964
+        },
+        {
+          "name": "freedom-e1bf6904-960.jpg",
+          "width": 960,
+          "bytes": 176169
+        },
+        {
+          "name": "freedom-e1bf6904-1280.jpg",
+          "width": 1280,
+          "bytes": 280364
+        },
+        {
+          "name": "freedom-e1bf6904-1600.jpg",
+          "width": 1600,
+          "bytes": 402868
+        },
+        {
+          "name": "freedom-e1bf6904-1920.jpg",
+          "width": 1920,
+          "bytes": 320182
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/freedom-e1bf6904-320.avif 320w, /_pictures/freedom-e1bf6904-480.avif 480w, /_pictures/freedom-e1bf6904-640.avif 640w, /_pictures/freedom-e1bf6904-960.avif 960w, /_pictures/freedom-e1bf6904-1280.avif 1280w, /_pictures/freedom-e1bf6904-1600.avif 1600w, /_pictures/freedom-e1bf6904-1920.avif 1920w"
+    },
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/freedom-e1bf6904-320.jxl 320w, /_pictures/freedom-e1bf6904-480.jxl 480w, /_pictures/freedom-e1bf6904-640.jxl 640w, /_pictures/freedom-e1bf6904-960.jxl 960w, /_pictures/freedom-e1bf6904-1280.jxl 1280w, /_pictures/freedom-e1bf6904-1600.jxl 1600w, /_pictures/freedom-e1bf6904-1920.jxl 1920w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/freedom-e1bf6904-960.jpg",
+    "srcset": "/_pictures/freedom-e1bf6904-320.jpg 320w, /_pictures/freedom-e1bf6904-480.jpg 480w, /_pictures/freedom-e1bf6904-640.jpg 640w, /_pictures/freedom-e1bf6904-960.jpg 960w, /_pictures/freedom-e1bf6904-1280.jpg 1280w, /_pictures/freedom-e1bf6904-1600.jpg 1600w, /_pictures/freedom-e1bf6904-1920.jpg 1920w"
+  }
+}

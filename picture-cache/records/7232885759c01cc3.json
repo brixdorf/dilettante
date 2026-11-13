@@ -1,0 +1,139 @@
+{
+  "kind": "photo",
+  "width": 1500,
+  "height": 1000,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 99,
+      "score": 0.9966924804897237,
+      "bytes": 1513194,
+      "files": [
+        {
+          "name": "cookies-72328857-320.jxl",
+          "width": 320,
+          "bytes": 22938
+        },
+        {
+          "name": "cookies-72328857-480.jxl",
+          "width": 480,
+          "bytes": 54295
+        },
+        {
+          "name": "cookies-72328857-640.jxl",
+          "width": 640,
+          "bytes": 104348
+        },
+        {
+          "name": "cookies-72328857-960.jxl",
+          "width": 960,
+          "bytes": 247956
+        },
+        {
+          "name": "cookies-72328857-1280.jxl",
+          "width": 1280,
+          "bytes": 446990
+        },
+        {
+          "name": "cookies-72328857-1500.jxl",
+          "width": 1500,
+          "bytes": 636667
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 98,
+      "score": 0.9950485618295579,
+      "bytes": 1666927,
+      "files": [
+        {
+          "name": "cookies-72328857-320.avif",
+          "width": 320,
+          "bytes": 29958
+        },
+        {
+          "name": "cookies-72328857-480.avif",
+          "width": 480,
+          "bytes": 68258
+        },
+        {
+          "name": "cookies-72328857-640.avif",
+          "width": 640,
+          "bytes": 125900
+        },
+        {
+          "name": "cookies-72328857-960.avif",
+          "width": 960,
+          "bytes": 284088
+        },
+        {
+          "name": "cookies-72328857-1280.avif",
+          "width": 1280,
+          "bytes": 496829
+        },
+        {
+          "name": "cookies-72328857-1500.avif",
+          "width": 1500,
+          "bytes": 661894
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 100,
+      "score": 0.9974315709193587,
+      "bytes": 1982004,
+      "files": [
+        {
+          "name": "cookies-72328857-320.jpg",
+          "width": 320,
+          "bytes": 35584
+        },
+        {
+          "name": "cookies-72328857-480.jpg",
+          "width": 480,
+          "bytes": 79721
+        },
+        {
+          "name": "cookies-72328857-640.jpg",
+          "width": 640,
+          "bytes": 146451
+        },
+        {
+          "name": "cookies-72328857-960.jpg",
+          "width": 960,
+          "bytes": 332331
+        },
+        {
+          "name": "cookies-72328857-1280.jpg",
+          "width": 1280,
+          "bytes": 584434
+        },
+        {
+          "name": "cookies-72328857-1500.jpg",
+          "width": 1500,
+          "bytes": 803483
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/cookies-72328857-320.jxl 320w, /_pictures/cookies-72328857-480.jxl 480w, /_pictures/cookies-72328857-640.jxl 640w, /_pictures/cookies-72328857-960.jxl 960w, /_pictures/cookies-72328857-1280.jxl 1280w, /_pictures/cookies-72328857-1500.jxl 1500w"
+    },
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/cookies-72328857-320.avif 320w, /_pictures/cookies-72328857-480.avif 480w, /_pictures/cookies-72328857-640.avif 640w, /_pictures/cookies-72328857-960.avif 960w, /_pictures/cookies-72328857-1280.avif 1280w, /_pictures/cookies-72328857-1500.avif 1500w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/cookies-72328857-960.jpg",
+    "srcset": "/_pictures/cookies-72328857-320.jpg 320w, /_pictures/cookies-72328857-480.jpg 480w, /_pictures/cookies-72328857-640.jpg 640w, /_pictures/cookies-72328857-960.jpg 960w, /_pictures/cookies-72328857-1280.jpg 1280w, /_pictures/cookies-72328857-1500.jpg 1500w"
+  }
+}

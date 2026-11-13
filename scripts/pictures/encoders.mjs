@@ -1,7 +1,8 @@
 // The formats a picture is saved in, each with a way to save (encode) a picture given as RGBA pixels
 // and to read (decode) the saved file back into RGBA pixels, so it can be scored. JPEG XL uses the
 // jSquash WebAssembly build (sharp's own build has no JPEG XL); everything else uses sharp.
-// "quality" is 1 to 100, or "lossless".
+// "quality" is 1 to 100, or "lossless". "effort" says how hard each encoder tries (EFFORT): more
+// effort makes smaller files, slowly.
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
@@ -21,6 +22,16 @@ const loadJxl = () => {
   return jxlReady;
 };
 
+/**
+ * How hard each encoder works. "full" is what picture-cache/ holds ("pnpm run pictures"). "quick"
+ * is for an image that has nothing there yet, made during a build: each takes well under a minute,
+ * and the files are a little larger.
+ */
+export const EFFORT = {
+  full: { jxl: 7, avif: 4, png: 9 },
+  quick: { jxl: 3, avif: 1, png: 6 },
+};
+
 const raw = (rgba, width, height) => sharp(rgba, { raw: { width, height, channels: 4 } });
 const decodeWithSharp = async (buffer) =>
   new Uint8Array(await sharp(buffer).ensureAlpha().raw().toBuffer());
@@ -29,11 +40,13 @@ export const encoders = {
   jxl: {
     type: "image/jxl",
     extension: "jxl",
-    async encode(rgba, width, height, quality) {
+    async encode(rgba, width, height, quality, effort = EFFORT.full) {
       await loadJxl();
       const data = new Uint8ClampedArray(rgba.buffer, rgba.byteOffset, rgba.length);
       const options =
-        quality === "lossless" ? { lossless: true, effort: 7 } : { quality, effort: 7 };
+        quality === "lossless"
+          ? { lossless: true, effort: effort.jxl }
+          : { quality, effort: effort.jxl };
       return Buffer.from(await encodeJxl({ data, width, height }, options));
     },
     async decode(buffer) {
@@ -45,9 +58,13 @@ export const encoders = {
   avif: {
     type: "image/avif",
     extension: "avif",
-    encode: (rgba, width, height, quality) =>
+    encode: (rgba, width, height, quality, effort = EFFORT.full) =>
       raw(rgba, width, height)
-        .avif(quality === "lossless" ? { lossless: true } : { quality, effort: 4 })
+        .avif(
+          quality === "lossless"
+            ? { lossless: true, effort: effort.avif }
+            : { quality, effort: effort.avif },
+        )
         .toBuffer(),
     decode: decodeWithSharp,
   },
@@ -73,9 +90,9 @@ export const encoders = {
   png: {
     type: "image/png",
     extension: "png",
-    // Plain PNG at its strongest compression: no palette, so no colour is ever changed.
-    encode: (rgba, width, height) =>
-      raw(rgba, width, height).png({ compressionLevel: 9, palette: false }).toBuffer(),
+    // Plain PNG (at its strongest compression for full effort): no palette, so no colour is ever changed.
+    encode: (rgba, width, height, _quality, effort = EFFORT.full) =>
+      raw(rgba, width, height).png({ compressionLevel: effort.png, palette: false }).toBuffer(),
     decode: decodeWithSharp,
   },
 };

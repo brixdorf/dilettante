@@ -1,12 +1,33 @@
 // Tests the picture maker: it saves every image of the blog as JPEG XL, AVIF and its original
 // format at the same visual quality (photos) or without any loss (PNG screenshots, logos and
-// drawings), and offers the newer formats smallest first, ending in the original format.
-import { existsSync, mkdtempSync, readFileSync, rmSync } from "node:fs";
+// drawings), and offers the newer formats smallest first, ending in the original format. Made
+// pictures are kept in picture-cache/ in the repository, so a build only copies them; an image
+// missing there is made quickly during the build.
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import sharp from "sharp";
 import { afterAll, beforeAll, describe, expect, it } from "vite-plus/test";
-import { PHOTO_TARGET, makePicture, widthsFor } from "../../scripts/pictures/make.mjs";
+import {
+  committedDirOf,
+  pictureFileOf,
+  preparePictures,
+  regeneratePictures,
+} from "../../scripts/pictures/index.mjs";
+import {
+  PHOTO_TARGET,
+  cachedPicture,
+  makePicture,
+  widthsFor,
+} from "../../scripts/pictures/make.mjs";
 import { lowestQuality, samePixels, ssim } from "../../scripts/pictures/score.mjs";
 
 let dir: string;
@@ -145,5 +166,76 @@ describe("a PNG", { timeout: 60_000 }, () => {
       .toBuffer();
     const original = await sharp(join(dir, "screen.png")).ensureAlpha().raw().toBuffer();
     expect(samePixels(decoded, original)).toBe(true);
+  });
+});
+
+describe("the files kept", { timeout: 60_000 }, () => {
+  it("are only those of the formats the page offers", async () => {
+    const record = await makePicture({ file: join(dir, "screen.png"), root: dir, cacheDir: dir });
+    const offered = new Set([record.fallback.type, ...record.sources.map((source) => source.type)]);
+    for (const format of record.formats) {
+      for (const file of format.files)
+        expect(existsSync(join(dir, "files", file.name))).toBe(offered.has(format.type));
+    }
+  });
+});
+
+describe("a quick picture", { timeout: 60_000 }, () => {
+  it("still reaches the same score, and is never taken for a full one", async () => {
+    const cacheDir = join(dir, "quick");
+    const file = join(dir, "photo.jpg");
+    const quick = await makePicture({ file, root: dir, cacheDir, quick: true });
+    expect(quick.quick).toBe(true);
+    for (const format of quick.formats) expect(format.score).toBeGreaterThanOrEqual(PHOTO_TARGET);
+    expect(cachedPicture({ file, root: dir, cacheDir })).toBeUndefined();
+    const full = await makePicture({ file, root: dir, cacheDir });
+    expect(full.quick).toBeUndefined();
+    expect(cachedPicture({ file, root: dir, cacheDir })).toEqual(full);
+  });
+});
+
+describe("a build", { timeout: 120_000 }, () => {
+  let root: string;
+  const lines: string[] = [];
+  const logger = {
+    info: (line: string) => lines.push(line),
+    warn: (line: string) => lines.push(line),
+  };
+  const listCommitted = () => readdirSync(join(committedDirOf(root), "files")).sort();
+
+  beforeAll(async () => {
+    root = join(dir, "site");
+    mkdirSync(join(root, "src", "assets"), { recursive: true });
+    copyFileSync(join(dir, "photo.jpg"), join(root, "src", "assets", "photo.jpg"));
+    await regeneratePictures({ root, logger });
+  }, 120_000);
+
+  it("uses the committed pictures, and quickly makes only the missing ones, one line each", async () => {
+    const committed = listCommitted();
+    mkdirSync(join(root, "src", "content", "blog", "post"), { recursive: true });
+    copyFileSync(
+      join(dir, "screen.png"),
+      join(root, "src", "content", "blog", "post", "screen.png"),
+    );
+    lines.length = 0;
+    const records = await preparePictures({ root, logger });
+    expect(records["src/assets/photo.jpg"].quick).toBeUndefined();
+    expect(records["src/content/blog/post/screen.png"].quick).toBe(true);
+    expect(lines.filter((line) => line.includes("src/content/blog/post/screen.png"))).toHaveLength(
+      1,
+    );
+    expect(lines.some((line) => line.includes("photo.jpg"))).toBe(false);
+    expect(listCommitted()).toEqual(committed);
+    for (const record of Object.values(records))
+      expect(existsSync(pictureFileOf(root, record.fallback.src.split("/").at(-1)!))).toBe(true);
+  });
+
+  it("regenerating commits every image, and drops the files of images that are gone", async () => {
+    rmSync(join(root, "src", "assets", "photo.jpg"));
+    await regeneratePictures({ root, logger });
+    const file = join(root, "src", "content", "blog", "post", "screen.png");
+    expect(cachedPicture({ file, root, cacheDir: committedDirOf(root) })).toBeDefined();
+    expect(listCommitted().every((name) => name.startsWith("screen-"))).toBe(true);
+    expect(readdirSync(join(committedDirOf(root), "records"))).toHaveLength(1);
   });
 });

@@ -1,0 +1,135 @@
+{
+  "kind": "lossless",
+  "width": 1386,
+  "height": 722,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 540660,
+      "files": [
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-320.jxl",
+          "width": 320,
+          "bytes": 27143
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-480.jxl",
+          "width": 480,
+          "bytes": 49940
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-640.jxl",
+          "width": 640,
+          "bytes": 76152
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-960.jxl",
+          "width": 960,
+          "bytes": 132739
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1280.jxl",
+          "width": 1280,
+          "bytes": 195381
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1386.jxl",
+          "width": 1386,
+          "bytes": 59305
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 849621,
+      "files": [
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-320.avif",
+          "width": 320,
+          "bytes": 34620
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-480.avif",
+          "width": 480,
+          "bytes": 64899
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-640.avif",
+          "width": 640,
+          "bytes": 100338
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-960.avif",
+          "width": 960,
+          "bytes": 179565
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1280.avif",
+          "width": 1280,
+          "bytes": 264351
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1386.avif",
+          "width": 1386,
+          "bytes": 205848
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 635473,
+      "files": [
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-320.png",
+          "width": 320,
+          "bytes": 32287
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-480.png",
+          "width": 480,
+          "bytes": 53884
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-640.png",
+          "width": 640,
+          "bytes": 91252
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-960.png",
+          "width": 960,
+          "bytes": 154756
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1280.png",
+          "width": 1280,
+          "bytes": 251646
+        },
+        {
+          "name": "ovhcloud-vps-options-b43d30ba-1386.png",
+          "width": 1386,
+          "bytes": 51648
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/ovhcloud-vps-options-b43d30ba-320.jxl 320w, /_pictures/ovhcloud-vps-options-b43d30ba-480.jxl 480w, /_pictures/ovhcloud-vps-options-b43d30ba-640.jxl 640w, /_pictures/ovhcloud-vps-options-b43d30ba-960.jxl 960w, /_pictures/ovhcloud-vps-options-b43d30ba-1280.jxl 1280w, /_pictures/ovhcloud-vps-options-b43d30ba-1386.jxl 1386w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/ovhcloud-vps-options-b43d30ba-960.png",
+    "srcset": "/_pictures/ovhcloud-vps-options-b43d30ba-320.png 320w, /_pictures/ovhcloud-vps-options-b43d30ba-480.png 480w, /_pictures/ovhcloud-vps-options-b43d30ba-640.png 640w, /_pictures/ovhcloud-vps-options-b43d30ba-960.png 960w, /_pictures/ovhcloud-vps-options-b43d30ba-1280.png 1280w, /_pictures/ovhcloud-vps-options-b43d30ba-1386.png 1386w"
+  }
+}

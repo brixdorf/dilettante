@@ -1,0 +1,154 @@
+{
+  "kind": "photo",
+  "width": 1920,
+  "height": 1081,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 99,
+      "score": 0.9960146599352329,
+      "bytes": 1437966,
+      "files": [
+        {
+          "name": "server-hardening-3bedd3a7-320.jxl",
+          "width": 320,
+          "bytes": 25326
+        },
+        {
+          "name": "server-hardening-3bedd3a7-480.jxl",
+          "width": 480,
+          "bytes": 49229
+        },
+        {
+          "name": "server-hardening-3bedd3a7-640.jxl",
+          "width": 640,
+          "bytes": 79599
+        },
+        {
+          "name": "server-hardening-3bedd3a7-960.jxl",
+          "width": 960,
+          "bytes": 169230
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1280.jxl",
+          "width": 1280,
+          "bytes": 277476
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1600.jxl",
+          "width": 1600,
+          "bytes": 402164
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1920.jxl",
+          "width": 1920,
+          "bytes": 434942
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 95,
+      "score": 0.996081970071986,
+      "bytes": 1194953,
+      "files": [
+        {
+          "name": "server-hardening-3bedd3a7-320.avif",
+          "width": 320,
+          "bytes": 23034
+        },
+        {
+          "name": "server-hardening-3bedd3a7-480.avif",
+          "width": 480,
+          "bytes": 46083
+        },
+        {
+          "name": "server-hardening-3bedd3a7-640.avif",
+          "width": 640,
+          "bytes": 74591
+        },
+        {
+          "name": "server-hardening-3bedd3a7-960.avif",
+          "width": 960,
+          "bytes": 141944
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1280.avif",
+          "width": 1280,
+          "bytes": 233708
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1600.avif",
+          "width": 1600,
+          "bytes": 334089
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1920.avif",
+          "width": 1920,
+          "bytes": 341504
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 99,
+      "score": 0.9961957269839894,
+      "bytes": 1782673,
+      "files": [
+        {
+          "name": "server-hardening-3bedd3a7-320.jpg",
+          "width": 320,
+          "bytes": 30640
+        },
+        {
+          "name": "server-hardening-3bedd3a7-480.jpg",
+          "width": 480,
+          "bytes": 60879
+        },
+        {
+          "name": "server-hardening-3bedd3a7-640.jpg",
+          "width": 640,
+          "bytes": 101632
+        },
+        {
+          "name": "server-hardening-3bedd3a7-960.jpg",
+          "width": 960,
+          "bytes": 212396
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1280.jpg",
+          "width": 1280,
+          "bytes": 357211
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1600.jpg",
+          "width": 1600,
+          "bytes": 520400
+        },
+        {
+          "name": "server-hardening-3bedd3a7-1920.jpg",
+          "width": 1920,
+          "bytes": 499515
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/server-hardening-3bedd3a7-320.avif 320w, /_pictures/server-hardening-3bedd3a7-480.avif 480w, /_pictures/server-hardening-3bedd3a7-640.avif 640w, /_pictures/server-hardening-3bedd3a7-960.avif 960w, /_pictures/server-hardening-3bedd3a7-1280.avif 1280w, /_pictures/server-hardening-3bedd3a7-1600.avif 1600w, /_pictures/server-hardening-3bedd3a7-1920.avif 1920w"
+    },
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/server-hardening-3bedd3a7-320.jxl 320w, /_pictures/server-hardening-3bedd3a7-480.jxl 480w, /_pictures/server-hardening-3bedd3a7-640.jxl 640w, /_pictures/server-hardening-3bedd3a7-960.jxl 960w, /_pictures/server-hardening-3bedd3a7-1280.jxl 1280w, /_pictures/server-hardening-3bedd3a7-1600.jxl 1600w, /_pictures/server-hardening-3bedd3a7-1920.jxl 1920w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/server-hardening-3bedd3a7-960.jpg",
+    "srcset": "/_pictures/server-hardening-3bedd3a7-320.jpg 320w, /_pictures/server-hardening-3bedd3a7-480.jpg 480w, /_pictures/server-hardening-3bedd3a7-640.jpg 640w, /_pictures/server-hardening-3bedd3a7-960.jpg 960w, /_pictures/server-hardening-3bedd3a7-1280.jpg 1280w, /_pictures/server-hardening-3bedd3a7-1600.jpg 1600w, /_pictures/server-hardening-3bedd3a7-1920.jpg 1920w"
+  }
+}

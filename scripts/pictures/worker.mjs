@@ -2,9 +2,9 @@
 import { parentPort } from "node:worker_threads";
 import { makePicture } from "./make.mjs";
 
-parentPort.on("message", async ({ id, file, root, cacheDir }) => {
+parentPort.on("message", async ({ id, file, root, cacheDir, quick }) => {
   try {
-    parentPort.postMessage({ id, record: await makePicture({ file, root, cacheDir }) });
+    parentPort.postMessage({ id, record: await makePicture({ file, root, cacheDir, quick }) });
   } catch (error) {
     parentPort.postMessage({ id, error: error instanceof Error ? error.stack : String(error) });
   }

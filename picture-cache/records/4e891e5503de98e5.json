@@ -1,0 +1,120 @@
+{
+  "kind": "lossless",
+  "width": 1200,
+  "height": 630,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 57892,
+      "files": [
+        {
+          "name": "react-logo-4e891e55-320.jxl",
+          "width": 320,
+          "bytes": 5446
+        },
+        {
+          "name": "react-logo-4e891e55-480.jxl",
+          "width": 480,
+          "bytes": 9463
+        },
+        {
+          "name": "react-logo-4e891e55-640.jxl",
+          "width": 640,
+          "bytes": 13130
+        },
+        {
+          "name": "react-logo-4e891e55-960.jxl",
+          "width": 960,
+          "bytes": 20768
+        },
+        {
+          "name": "react-logo-4e891e55-1200.jxl",
+          "width": 1200,
+          "bytes": 9085
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 144781,
+      "files": [
+        {
+          "name": "react-logo-4e891e55-320.avif",
+          "width": 320,
+          "bytes": 12590
+        },
+        {
+          "name": "react-logo-4e891e55-480.avif",
+          "width": 480,
+          "bytes": 20715
+        },
+        {
+          "name": "react-logo-4e891e55-640.avif",
+          "width": 640,
+          "bytes": 28538
+        },
+        {
+          "name": "react-logo-4e891e55-960.avif",
+          "width": 960,
+          "bytes": 41490
+        },
+        {
+          "name": "react-logo-4e891e55-1200.avif",
+          "width": 1200,
+          "bytes": 41448
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 112855,
+      "files": [
+        {
+          "name": "react-logo-4e891e55-320.png",
+          "width": 320,
+          "bytes": 9890
+        },
+        {
+          "name": "react-logo-4e891e55-480.png",
+          "width": 480,
+          "bytes": 16288
+        },
+        {
+          "name": "react-logo-4e891e55-640.png",
+          "width": 640,
+          "bytes": 23441
+        },
+        {
+          "name": "react-logo-4e891e55-960.png",
+          "width": 960,
+          "bytes": 39562
+        },
+        {
+          "name": "react-logo-4e891e55-1200.png",
+          "width": 1200,
+          "bytes": 23674
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/react-logo-4e891e55-320.jxl 320w, /_pictures/react-logo-4e891e55-480.jxl 480w, /_pictures/react-logo-4e891e55-640.jxl 640w, /_pictures/react-logo-4e891e55-960.jxl 960w, /_pictures/react-logo-4e891e55-1200.jxl 1200w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/react-logo-4e891e55-960.png",
+    "srcset": "/_pictures/react-logo-4e891e55-320.png 320w, /_pictures/react-logo-4e891e55-480.png 480w, /_pictures/react-logo-4e891e55-640.png 640w, /_pictures/react-logo-4e891e55-960.png 960w, /_pictures/react-logo-4e891e55-1200.png 1200w"
+  }
+}

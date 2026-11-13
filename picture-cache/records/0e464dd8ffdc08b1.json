@@ -1,0 +1,154 @@
+{
+  "kind": "photo",
+  "width": 1920,
+  "height": 1438,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 94,
+      "score": 0.9956077794181623,
+      "bytes": 3298226,
+      "files": [
+        {
+          "name": "finish-line-0e464dd8-320.jxl",
+          "width": 320,
+          "bytes": 37439
+        },
+        {
+          "name": "finish-line-0e464dd8-480.jxl",
+          "width": 480,
+          "bytes": 89865
+        },
+        {
+          "name": "finish-line-0e464dd8-640.jxl",
+          "width": 640,
+          "bytes": 160759
+        },
+        {
+          "name": "finish-line-0e464dd8-960.jxl",
+          "width": 960,
+          "bytes": 368990
+        },
+        {
+          "name": "finish-line-0e464dd8-1280.jxl",
+          "width": 1280,
+          "bytes": 622212
+        },
+        {
+          "name": "finish-line-0e464dd8-1600.jxl",
+          "width": 1600,
+          "bytes": 894362
+        },
+        {
+          "name": "finish-line-0e464dd8-1920.jxl",
+          "width": 1920,
+          "bytes": 1124599
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 84,
+      "score": 0.995528892164785,
+      "bytes": 3370487,
+      "files": [
+        {
+          "name": "finish-line-0e464dd8-320.avif",
+          "width": 320,
+          "bytes": 38599
+        },
+        {
+          "name": "finish-line-0e464dd8-480.avif",
+          "width": 480,
+          "bytes": 93702
+        },
+        {
+          "name": "finish-line-0e464dd8-640.avif",
+          "width": 640,
+          "bytes": 171365
+        },
+        {
+          "name": "finish-line-0e464dd8-960.avif",
+          "width": 960,
+          "bytes": 397588
+        },
+        {
+          "name": "finish-line-0e464dd8-1280.avif",
+          "width": 1280,
+          "bytes": 633793
+        },
+        {
+          "name": "finish-line-0e464dd8-1600.avif",
+          "width": 1600,
+          "bytes": 895014
+        },
+        {
+          "name": "finish-line-0e464dd8-1920.avif",
+          "width": 1920,
+          "bytes": 1140426
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 97,
+      "score": 0.9961956704298464,
+      "bytes": 5009499,
+      "files": [
+        {
+          "name": "finish-line-0e464dd8-320.jpg",
+          "width": 320,
+          "bytes": 54583
+        },
+        {
+          "name": "finish-line-0e464dd8-480.jpg",
+          "width": 480,
+          "bytes": 132881
+        },
+        {
+          "name": "finish-line-0e464dd8-640.jpg",
+          "width": 640,
+          "bytes": 240905
+        },
+        {
+          "name": "finish-line-0e464dd8-960.jpg",
+          "width": 960,
+          "bytes": 553973
+        },
+        {
+          "name": "finish-line-0e464dd8-1280.jpg",
+          "width": 1280,
+          "bytes": 948809
+        },
+        {
+          "name": "finish-line-0e464dd8-1600.jpg",
+          "width": 1600,
+          "bytes": 1401701
+        },
+        {
+          "name": "finish-line-0e464dd8-1920.jpg",
+          "width": 1920,
+          "bytes": 1676647
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/finish-line-0e464dd8-320.jxl 320w, /_pictures/finish-line-0e464dd8-480.jxl 480w, /_pictures/finish-line-0e464dd8-640.jxl 640w, /_pictures/finish-line-0e464dd8-960.jxl 960w, /_pictures/finish-line-0e464dd8-1280.jxl 1280w, /_pictures/finish-line-0e464dd8-1600.jxl 1600w, /_pictures/finish-line-0e464dd8-1920.jxl 1920w"
+    },
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/finish-line-0e464dd8-320.avif 320w, /_pictures/finish-line-0e464dd8-480.avif 480w, /_pictures/finish-line-0e464dd8-640.avif 640w, /_pictures/finish-line-0e464dd8-960.avif 960w, /_pictures/finish-line-0e464dd8-1280.avif 1280w, /_pictures/finish-line-0e464dd8-1600.avif 1600w, /_pictures/finish-line-0e464dd8-1920.avif 1920w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/finish-line-0e464dd8-960.jpg",
+    "srcset": "/_pictures/finish-line-0e464dd8-320.jpg 320w, /_pictures/finish-line-0e464dd8-480.jpg 480w, /_pictures/finish-line-0e464dd8-640.jpg 640w, /_pictures/finish-line-0e464dd8-960.jpg 960w, /_pictures/finish-line-0e464dd8-1280.jpg 1280w, /_pictures/finish-line-0e464dd8-1600.jpg 1600w, /_pictures/finish-line-0e464dd8-1920.jpg 1920w"
+  }
+}

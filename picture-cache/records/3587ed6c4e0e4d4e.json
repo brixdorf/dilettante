@@ -1,0 +1,154 @@
+{
+  "kind": "photo",
+  "width": 1920,
+  "height": 1440,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 95,
+      "score": 0.9953249640993556,
+      "bytes": 801491,
+      "files": [
+        {
+          "name": "laptop-and-notebook-3587ed6c-320.jxl",
+          "width": 320,
+          "bytes": 20357
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-480.jxl",
+          "width": 480,
+          "bytes": 36221
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-640.jxl",
+          "width": 640,
+          "bytes": 53177
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-960.jxl",
+          "width": 960,
+          "bytes": 99527
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1280.jxl",
+          "width": 1280,
+          "bytes": 145452
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1600.jxl",
+          "width": 1600,
+          "bytes": 199473
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1920.jxl",
+          "width": 1920,
+          "bytes": 247284
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 92,
+      "score": 0.9954280310408666,
+      "bytes": 894529,
+      "files": [
+        {
+          "name": "laptop-and-notebook-3587ed6c-320.avif",
+          "width": 320,
+          "bytes": 22458
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-480.avif",
+          "width": 480,
+          "bytes": 42064
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-640.avif",
+          "width": 640,
+          "bytes": 61845
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-960.avif",
+          "width": 960,
+          "bytes": 115295
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1280.avif",
+          "width": 1280,
+          "bytes": 167906
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1600.avif",
+          "width": 1600,
+          "bytes": 229790
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1920.avif",
+          "width": 1920,
+          "bytes": 255171
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 97,
+      "score": 0.9955979953505979,
+      "bytes": 1360679,
+      "files": [
+        {
+          "name": "laptop-and-notebook-3587ed6c-320.jpg",
+          "width": 320,
+          "bytes": 30764
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-480.jpg",
+          "width": 480,
+          "bytes": 58234
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-640.jpg",
+          "width": 640,
+          "bytes": 89237
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-960.jpg",
+          "width": 960,
+          "bytes": 169860
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1280.jpg",
+          "width": 1280,
+          "bytes": 264482
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1600.jpg",
+          "width": 1600,
+          "bytes": 374141
+        },
+        {
+          "name": "laptop-and-notebook-3587ed6c-1920.jpg",
+          "width": 1920,
+          "bytes": 373961
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/laptop-and-notebook-3587ed6c-320.jxl 320w, /_pictures/laptop-and-notebook-3587ed6c-480.jxl 480w, /_pictures/laptop-and-notebook-3587ed6c-640.jxl 640w, /_pictures/laptop-and-notebook-3587ed6c-960.jxl 960w, /_pictures/laptop-and-notebook-3587ed6c-1280.jxl 1280w, /_pictures/laptop-and-notebook-3587ed6c-1600.jxl 1600w, /_pictures/laptop-and-notebook-3587ed6c-1920.jxl 1920w"
+    },
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/laptop-and-notebook-3587ed6c-320.avif 320w, /_pictures/laptop-and-notebook-3587ed6c-480.avif 480w, /_pictures/laptop-and-notebook-3587ed6c-640.avif 640w, /_pictures/laptop-and-notebook-3587ed6c-960.avif 960w, /_pictures/laptop-and-notebook-3587ed6c-1280.avif 1280w, /_pictures/laptop-and-notebook-3587ed6c-1600.avif 1600w, /_pictures/laptop-and-notebook-3587ed6c-1920.avif 1920w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/laptop-and-notebook-3587ed6c-960.jpg",
+    "srcset": "/_pictures/laptop-and-notebook-3587ed6c-320.jpg 320w, /_pictures/laptop-and-notebook-3587ed6c-480.jpg 480w, /_pictures/laptop-and-notebook-3587ed6c-640.jpg 640w, /_pictures/laptop-and-notebook-3587ed6c-960.jpg 960w, /_pictures/laptop-and-notebook-3587ed6c-1280.jpg 1280w, /_pictures/laptop-and-notebook-3587ed6c-1600.jpg 1600w, /_pictures/laptop-and-notebook-3587ed6c-1920.jpg 1920w"
+  }
+}

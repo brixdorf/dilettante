@@ -1,0 +1,135 @@
+{
+  "kind": "lossless",
+  "width": 1409,
+  "height": 869,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 407438,
+      "files": [
+        {
+          "name": "calendar-view-1-1854595c-320.jxl",
+          "width": 320,
+          "bytes": 25843
+        },
+        {
+          "name": "calendar-view-1-1854595c-480.jxl",
+          "width": 480,
+          "bytes": 40523
+        },
+        {
+          "name": "calendar-view-1-1854595c-640.jxl",
+          "width": 640,
+          "bytes": 61098
+        },
+        {
+          "name": "calendar-view-1-1854595c-960.jxl",
+          "width": 960,
+          "bytes": 95011
+        },
+        {
+          "name": "calendar-view-1-1854595c-1280.jxl",
+          "width": 1280,
+          "bytes": 133121
+        },
+        {
+          "name": "calendar-view-1-1854595c-1409.jxl",
+          "width": 1409,
+          "bytes": 51842
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 709341,
+      "files": [
+        {
+          "name": "calendar-view-1-1854595c-320.avif",
+          "width": 320,
+          "bytes": 41627
+        },
+        {
+          "name": "calendar-view-1-1854595c-480.avif",
+          "width": 480,
+          "bytes": 64923
+        },
+        {
+          "name": "calendar-view-1-1854595c-640.avif",
+          "width": 640,
+          "bytes": 90877
+        },
+        {
+          "name": "calendar-view-1-1854595c-960.avif",
+          "width": 960,
+          "bytes": 147230
+        },
+        {
+          "name": "calendar-view-1-1854595c-1280.avif",
+          "width": 1280,
+          "bytes": 206499
+        },
+        {
+          "name": "calendar-view-1-1854595c-1409.avif",
+          "width": 1409,
+          "bytes": 158185
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 526967,
+      "files": [
+        {
+          "name": "calendar-view-1-1854595c-320.png",
+          "width": 320,
+          "bytes": 32035
+        },
+        {
+          "name": "calendar-view-1-1854595c-480.png",
+          "width": 480,
+          "bytes": 50060
+        },
+        {
+          "name": "calendar-view-1-1854595c-640.png",
+          "width": 640,
+          "bytes": 72765
+        },
+        {
+          "name": "calendar-view-1-1854595c-960.png",
+          "width": 960,
+          "bytes": 124000
+        },
+        {
+          "name": "calendar-view-1-1854595c-1280.png",
+          "width": 1280,
+          "bytes": 184022
+        },
+        {
+          "name": "calendar-view-1-1854595c-1409.png",
+          "width": 1409,
+          "bytes": 64085
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/calendar-view-1-1854595c-320.jxl 320w, /_pictures/calendar-view-1-1854595c-480.jxl 480w, /_pictures/calendar-view-1-1854595c-640.jxl 640w, /_pictures/calendar-view-1-1854595c-960.jxl 960w, /_pictures/calendar-view-1-1854595c-1280.jxl 1280w, /_pictures/calendar-view-1-1854595c-1409.jxl 1409w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/calendar-view-1-1854595c-960.png",
+    "srcset": "/_pictures/calendar-view-1-1854595c-320.png 320w, /_pictures/calendar-view-1-1854595c-480.png 480w, /_pictures/calendar-view-1-1854595c-640.png 640w, /_pictures/calendar-view-1-1854595c-960.png 960w, /_pictures/calendar-view-1-1854595c-1280.png 1280w, /_pictures/calendar-view-1-1854595c-1409.png 1409w"
+  }
+}

@@ -24,6 +24,8 @@ export default defineConfig({
       "pnpm-lock.yaml",
       "test-results",
       "src/content/**",
+      // Made by "pnpm run pictures", and never edited by hand.
+      "picture-cache",
       "AGENTS.md",
       "CHANGELOG.md",
     ],

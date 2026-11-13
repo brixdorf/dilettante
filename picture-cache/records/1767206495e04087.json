@@ -1,0 +1,105 @@
+{
+  "kind": "lossless",
+  "width": 698,
+  "height": 473,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 75690,
+      "files": [
+        {
+          "name": "db-schema-17672064-320.jxl",
+          "width": 320,
+          "bytes": 11643
+        },
+        {
+          "name": "db-schema-17672064-480.jxl",
+          "width": 480,
+          "bytes": 19637
+        },
+        {
+          "name": "db-schema-17672064-640.jxl",
+          "width": 640,
+          "bytes": 30199
+        },
+        {
+          "name": "db-schema-17672064-698.jxl",
+          "width": 698,
+          "bytes": 14211
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 125636,
+      "files": [
+        {
+          "name": "db-schema-17672064-320.avif",
+          "width": 320,
+          "bytes": 18753
+        },
+        {
+          "name": "db-schema-17672064-480.avif",
+          "width": 480,
+          "bytes": 30811
+        },
+        {
+          "name": "db-schema-17672064-640.avif",
+          "width": 640,
+          "bytes": 41929
+        },
+        {
+          "name": "db-schema-17672064-698.avif",
+          "width": 698,
+          "bytes": 34143
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 96283,
+      "files": [
+        {
+          "name": "db-schema-17672064-320.png",
+          "width": 320,
+          "bytes": 14792
+        },
+        {
+          "name": "db-schema-17672064-480.png",
+          "width": 480,
+          "bytes": 25534
+        },
+        {
+          "name": "db-schema-17672064-640.png",
+          "width": 640,
+          "bytes": 38195
+        },
+        {
+          "name": "db-schema-17672064-698.png",
+          "width": 698,
+          "bytes": 17762
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/db-schema-17672064-320.jxl 320w, /_pictures/db-schema-17672064-480.jxl 480w, /_pictures/db-schema-17672064-640.jxl 640w, /_pictures/db-schema-17672064-698.jxl 698w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/db-schema-17672064-698.png",
+    "srcset": "/_pictures/db-schema-17672064-320.png 320w, /_pictures/db-schema-17672064-480.png 480w, /_pictures/db-schema-17672064-640.png 640w, /_pictures/db-schema-17672064-698.png 698w"
+  }
+}

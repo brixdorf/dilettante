@@ -15,7 +15,8 @@
     "test:browsers": "playwright test",
     "smoke": "playwright test --project=chromium --project=keystatic",
     "lint": "vp check && astro check",
-    "share": "node scripts/share.mjs"
+    "share": "node scripts/share.mjs",
+    "pictures": "node scripts/pictures/regenerate.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "8.1.5",

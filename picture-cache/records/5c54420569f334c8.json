@@ -1,0 +1,169 @@
+{
+  "kind": "photo",
+  "width": 2600,
+  "height": 1550,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 94,
+      "score": 0.9952756513383438,
+      "bytes": 411692,
+      "files": [
+        {
+          "name": "hero-mist-5c544205-320.jxl",
+          "width": 320,
+          "bytes": 4742
+        },
+        {
+          "name": "hero-mist-5c544205-480.jxl",
+          "width": 480,
+          "bytes": 8118
+        },
+        {
+          "name": "hero-mist-5c544205-640.jxl",
+          "width": 640,
+          "bytes": 12643
+        },
+        {
+          "name": "hero-mist-5c544205-960.jxl",
+          "width": 960,
+          "bytes": 26928
+        },
+        {
+          "name": "hero-mist-5c544205-1280.jxl",
+          "width": 1280,
+          "bytes": 48310
+        },
+        {
+          "name": "hero-mist-5c544205-1600.jxl",
+          "width": 1600,
+          "bytes": 75466
+        },
+        {
+          "name": "hero-mist-5c544205-1920.jxl",
+          "width": 1920,
+          "bytes": 104243
+        },
+        {
+          "name": "hero-mist-5c544205-2600.jxl",
+          "width": 2600,
+          "bytes": 131242
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 91,
+      "score": 0.9952540197592423,
+      "bytes": 469594,
+      "files": [
+        {
+          "name": "hero-mist-5c544205-320.avif",
+          "width": 320,
+          "bytes": 5232
+        },
+        {
+          "name": "hero-mist-5c544205-480.avif",
+          "width": 480,
+          "bytes": 9796
+        },
+        {
+          "name": "hero-mist-5c544205-640.avif",
+          "width": 640,
+          "bytes": 16085
+        },
+        {
+          "name": "hero-mist-5c544205-960.avif",
+          "width": 960,
+          "bytes": 34424
+        },
+        {
+          "name": "hero-mist-5c544205-1280.avif",
+          "width": 1280,
+          "bytes": 62832
+        },
+        {
+          "name": "hero-mist-5c544205-1600.avif",
+          "width": 1600,
+          "bytes": 95992
+        },
+        {
+          "name": "hero-mist-5c544205-1920.avif",
+          "width": 1920,
+          "bytes": 129294
+        },
+        {
+          "name": "hero-mist-5c544205-2600.avif",
+          "width": 2600,
+          "bytes": 115939
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 96,
+      "score": 0.9954895567387042,
+      "bytes": 718628,
+      "files": [
+        {
+          "name": "hero-mist-5c544205-320.jpg",
+          "width": 320,
+          "bytes": 8585
+        },
+        {
+          "name": "hero-mist-5c544205-480.jpg",
+          "width": 480,
+          "bytes": 16198
+        },
+        {
+          "name": "hero-mist-5c544205-640.jpg",
+          "width": 640,
+          "bytes": 26185
+        },
+        {
+          "name": "hero-mist-5c544205-960.jpg",
+          "width": 960,
+          "bytes": 53643
+        },
+        {
+          "name": "hero-mist-5c544205-1280.jpg",
+          "width": 1280,
+          "bytes": 93898
+        },
+        {
+          "name": "hero-mist-5c544205-1600.jpg",
+          "width": 1600,
+          "bytes": 144174
+        },
+        {
+          "name": "hero-mist-5c544205-1920.jpg",
+          "width": 1920,
+          "bytes": 200817
+        },
+        {
+          "name": "hero-mist-5c544205-2600.jpg",
+          "width": 2600,
+          "bytes": 175128
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/hero-mist-5c544205-320.jxl 320w, /_pictures/hero-mist-5c544205-480.jxl 480w, /_pictures/hero-mist-5c544205-640.jxl 640w, /_pictures/hero-mist-5c544205-960.jxl 960w, /_pictures/hero-mist-5c544205-1280.jxl 1280w, /_pictures/hero-mist-5c544205-1600.jxl 1600w, /_pictures/hero-mist-5c544205-1920.jxl 1920w, /_pictures/hero-mist-5c544205-2600.jxl 2600w"
+    },
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/hero-mist-5c544205-320.avif 320w, /_pictures/hero-mist-5c544205-480.avif 480w, /_pictures/hero-mist-5c544205-640.avif 640w, /_pictures/hero-mist-5c544205-960.avif 960w, /_pictures/hero-mist-5c544205-1280.avif 1280w, /_pictures/hero-mist-5c544205-1600.avif 1600w, /_pictures/hero-mist-5c544205-1920.avif 1920w, /_pictures/hero-mist-5c544205-2600.avif 2600w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/hero-mist-5c544205-960.jpg",
+    "srcset": "/_pictures/hero-mist-5c544205-320.jpg 320w, /_pictures/hero-mist-5c544205-480.jpg 480w, /_pictures/hero-mist-5c544205-640.jpg 640w, /_pictures/hero-mist-5c544205-960.jpg 960w, /_pictures/hero-mist-5c544205-1280.jpg 1280w, /_pictures/hero-mist-5c544205-1600.jpg 1600w, /_pictures/hero-mist-5c544205-1920.jpg 1920w, /_pictures/hero-mist-5c544205-2600.jpg 2600w"
+  }
+}

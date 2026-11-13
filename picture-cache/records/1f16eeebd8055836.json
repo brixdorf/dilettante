@@ -1,0 +1,124 @@
+{
+  "kind": "photo",
+  "width": 1193,
+  "height": 565,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": 30,
+      "score": 0.9951110234652938,
+      "bytes": 36779,
+      "files": [
+        {
+          "name": "sqlite-1f16eeeb-320.jxl",
+          "width": 320,
+          "bytes": 3147
+        },
+        {
+          "name": "sqlite-1f16eeeb-480.jxl",
+          "width": 480,
+          "bytes": 4887
+        },
+        {
+          "name": "sqlite-1f16eeeb-640.jxl",
+          "width": 640,
+          "bytes": 6373
+        },
+        {
+          "name": "sqlite-1f16eeeb-960.jxl",
+          "width": 960,
+          "bytes": 9843
+        },
+        {
+          "name": "sqlite-1f16eeeb-1193.jxl",
+          "width": 1193,
+          "bytes": 12529
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": 35,
+      "score": 0.9951250414696373,
+      "bytes": 18511,
+      "files": [
+        {
+          "name": "sqlite-1f16eeeb-320.avif",
+          "width": 320,
+          "bytes": 1775
+        },
+        {
+          "name": "sqlite-1f16eeeb-480.avif",
+          "width": 480,
+          "bytes": 2628
+        },
+        {
+          "name": "sqlite-1f16eeeb-640.avif",
+          "width": 640,
+          "bytes": 3202
+        },
+        {
+          "name": "sqlite-1f16eeeb-960.avif",
+          "width": 960,
+          "bytes": 4825
+        },
+        {
+          "name": "sqlite-1f16eeeb-1193.avif",
+          "width": 1193,
+          "bytes": 6081
+        }
+      ]
+    },
+    {
+      "type": "image/jpeg",
+      "extension": "jpg",
+      "quality": 87,
+      "score": 0.9952140083047704,
+      "bytes": 101078,
+      "files": [
+        {
+          "name": "sqlite-1f16eeeb-320.jpg",
+          "width": 320,
+          "bytes": 7209
+        },
+        {
+          "name": "sqlite-1f16eeeb-480.jpg",
+          "width": 480,
+          "bytes": 12183
+        },
+        {
+          "name": "sqlite-1f16eeeb-640.jpg",
+          "width": 640,
+          "bytes": 16933
+        },
+        {
+          "name": "sqlite-1f16eeeb-960.jpg",
+          "width": 960,
+          "bytes": 28279
+        },
+        {
+          "name": "sqlite-1f16eeeb-1193.jpg",
+          "width": 1193,
+          "bytes": 36474
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/sqlite-1f16eeeb-320.avif 320w, /_pictures/sqlite-1f16eeeb-480.avif 480w, /_pictures/sqlite-1f16eeeb-640.avif 640w, /_pictures/sqlite-1f16eeeb-960.avif 960w, /_pictures/sqlite-1f16eeeb-1193.avif 1193w"
+    },
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/sqlite-1f16eeeb-320.jxl 320w, /_pictures/sqlite-1f16eeeb-480.jxl 480w, /_pictures/sqlite-1f16eeeb-640.jxl 640w, /_pictures/sqlite-1f16eeeb-960.jxl 960w, /_pictures/sqlite-1f16eeeb-1193.jxl 1193w"
+    }
+  ],
+  "fallback": {
+    "type": "image/jpeg",
+    "src": "/_pictures/sqlite-1f16eeeb-960.jpg",
+    "srcset": "/_pictures/sqlite-1f16eeeb-320.jpg 320w, /_pictures/sqlite-1f16eeeb-480.jpg 480w, /_pictures/sqlite-1f16eeeb-640.jpg 640w, /_pictures/sqlite-1f16eeeb-960.jpg 960w, /_pictures/sqlite-1f16eeeb-1193.jpg 1193w"
+  }
+}

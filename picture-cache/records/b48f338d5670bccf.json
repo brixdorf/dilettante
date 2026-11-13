@@ -1,0 +1,90 @@
+{
+  "kind": "lossless",
+  "width": 556,
+  "height": 418,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 20486,
+      "files": [
+        {
+          "name": "login-page-b48f338d-320.jxl",
+          "width": 320,
+          "bytes": 5540
+        },
+        {
+          "name": "login-page-b48f338d-480.jxl",
+          "width": 480,
+          "bytes": 9447
+        },
+        {
+          "name": "login-page-b48f338d-556.jxl",
+          "width": 556,
+          "bytes": 5499
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 30941,
+      "files": [
+        {
+          "name": "login-page-b48f338d-320.avif",
+          "width": 320,
+          "bytes": 7614
+        },
+        {
+          "name": "login-page-b48f338d-480.avif",
+          "width": 480,
+          "bytes": 12262
+        },
+        {
+          "name": "login-page-b48f338d-556.avif",
+          "width": 556,
+          "bytes": 11065
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 27999,
+      "files": [
+        {
+          "name": "login-page-b48f338d-320.png",
+          "width": 320,
+          "bytes": 7279
+        },
+        {
+          "name": "login-page-b48f338d-480.png",
+          "width": 480,
+          "bytes": 12816
+        },
+        {
+          "name": "login-page-b48f338d-556.png",
+          "width": 556,
+          "bytes": 7904
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/login-page-b48f338d-320.jxl 320w, /_pictures/login-page-b48f338d-480.jxl 480w, /_pictures/login-page-b48f338d-556.jxl 556w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/login-page-b48f338d-556.png",
+    "srcset": "/_pictures/login-page-b48f338d-320.png 320w, /_pictures/login-page-b48f338d-480.png 480w, /_pictures/login-page-b48f338d-556.png 556w"
+  }
+}

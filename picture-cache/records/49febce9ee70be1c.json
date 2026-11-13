@@ -1,0 +1,154 @@
+{
+  "kind": "lossless",
+  "width": 1919,
+  "height": 917,
+  "formats": [
+    {
+      "type": "image/jxl",
+      "extension": "jxl",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 1124940,
+      "files": [
+        {
+          "name": "final-result-49febce9-320.jxl",
+          "width": 320,
+          "bytes": 26626
+        },
+        {
+          "name": "final-result-49febce9-480.jxl",
+          "width": 480,
+          "bytes": 40139
+        },
+        {
+          "name": "final-result-49febce9-640.jxl",
+          "width": 640,
+          "bytes": 71234
+        },
+        {
+          "name": "final-result-49febce9-960.jxl",
+          "width": 960,
+          "bytes": 128221
+        },
+        {
+          "name": "final-result-49febce9-1280.jxl",
+          "width": 1280,
+          "bytes": 241244
+        },
+        {
+          "name": "final-result-49febce9-1600.jxl",
+          "width": 1600,
+          "bytes": 345128
+        },
+        {
+          "name": "final-result-49febce9-1919.jxl",
+          "width": 1919,
+          "bytes": 272348
+        }
+      ]
+    },
+    {
+      "type": "image/avif",
+      "extension": "avif",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 1713649,
+      "files": [
+        {
+          "name": "final-result-49febce9-320.avif",
+          "width": 320,
+          "bytes": 39472
+        },
+        {
+          "name": "final-result-49febce9-480.avif",
+          "width": 480,
+          "bytes": 61969
+        },
+        {
+          "name": "final-result-49febce9-640.avif",
+          "width": 640,
+          "bytes": 103299
+        },
+        {
+          "name": "final-result-49febce9-960.avif",
+          "width": 960,
+          "bytes": 189281
+        },
+        {
+          "name": "final-result-49febce9-1280.avif",
+          "width": 1280,
+          "bytes": 323662
+        },
+        {
+          "name": "final-result-49febce9-1600.avif",
+          "width": 1600,
+          "bytes": 473902
+        },
+        {
+          "name": "final-result-49febce9-1919.avif",
+          "width": 1919,
+          "bytes": 522064
+        }
+      ]
+    },
+    {
+      "type": "image/png",
+      "extension": "png",
+      "quality": "lossless",
+      "exact": true,
+      "bytes": 1824188,
+      "files": [
+        {
+          "name": "final-result-49febce9-320.png",
+          "width": 320,
+          "bytes": 39383
+        },
+        {
+          "name": "final-result-49febce9-480.png",
+          "width": 480,
+          "bytes": 57774
+        },
+        {
+          "name": "final-result-49febce9-640.png",
+          "width": 640,
+          "bytes": 105522
+        },
+        {
+          "name": "final-result-49febce9-960.png",
+          "width": 960,
+          "bytes": 159787
+        },
+        {
+          "name": "final-result-49febce9-1280.png",
+          "width": 1280,
+          "bytes": 462474
+        },
+        {
+          "name": "final-result-49febce9-1600.png",
+          "width": 1600,
+          "bytes": 641003
+        },
+        {
+          "name": "final-result-49febce9-1919.png",
+          "width": 1919,
+          "bytes": 358245
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "image/jxl",
+      "srcset": "/_pictures/final-result-49febce9-320.jxl 320w, /_pictures/final-result-49febce9-480.jxl 480w, /_pictures/final-result-49febce9-640.jxl 640w, /_pictures/final-result-49febce9-960.jxl 960w, /_pictures/final-result-49febce9-1280.jxl 1280w, /_pictures/final-result-49febce9-1600.jxl 1600w, /_pictures/final-result-49febce9-1919.jxl 1919w"
+    },
+    {
+      "type": "image/avif",
+      "srcset": "/_pictures/final-result-49febce9-320.avif 320w, /_pictures/final-result-49febce9-480.avif 480w, /_pictures/final-result-49febce9-640.avif 640w, /_pictures/final-result-49febce9-960.avif 960w, /_pictures/final-result-49febce9-1280.avif 1280w, /_pictures/final-result-49febce9-1600.avif 1600w, /_pictures/final-result-49febce9-1919.avif 1919w"
+    }
+  ],
+  "fallback": {
+    "type": "image/png",
+    "src": "/_pictures/final-result-49febce9-960.png",
+    "srcset": "/_pictures/final-result-49febce9-320.png 320w, /_pictures/final-result-49febce9-480.png 480w, /_pictures/final-result-49febce9-640.png 640w, /_pictures/final-result-49febce9-960.png 960w, /_pictures/final-result-49febce9-1280.png 1280w, /_pictures/final-result-49febce9-1600.png 1600w, /_pictures/final-result-49febce9-1919.png 1919w"
+  }
+}
