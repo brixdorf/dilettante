@@ -1,6 +1,6 @@
 ---
 import Icon from "@/components/ui/Icon.astro";
-import { footerLinks, siteConfig } from "@/config/site";
+import { footerLinks, siteConfig, type SocialLink } from "@/config/site";
 import { categories } from "@/config/taxonomy";
 import { categoryUrl, getPosts } from "@/lib/posts";
 
@@ -19,12 +19,12 @@ const sections = categories.filter((category) =>
       </a>
       <p class="mt-4 text-[0.9375rem] leading-relaxed text-muted">{siteConfig.description}</p>
       <ul class="mt-6 flex items-center gap-1">
-        {siteConfig.socials.map((social) => (
+        {siteConfig.socials.map((social: SocialLink) => (
           <li>
             <a
               href={social.href}
               class="icon-btn"
-              aria-label={`${siteConfig.name} on ${social.label}`}
+              aria-label={social.footerLabel ?? `${siteConfig.name} on ${social.label}`}
             >
               <Icon name={`social-${social.icon}`} class="size-[1.05rem]" />
             </a>

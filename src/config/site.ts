@@ -8,9 +8,18 @@ export interface SocialLink extends NavLink {
   icon: string;
   /** The name shown beside the icon on the Contact page, under "Find Me Here". */
   handle?: string;
+  /** The footer icon's name for screen readers, when "<site name> on <label>" would not fit. */
+  footerLabel?: string;
 }
 
 // Romit's profiles elsewhere.
+const website = {
+  label: "Website",
+  href: "https://romitraj.dev",
+  icon: "globe2",
+  handle: "romitraj.dev",
+  footerLabel: "My personal website",
+} satisfies SocialLink;
 const github = {
   label: "GitHub",
   href: "https://github.com/brixdorf",
@@ -60,10 +69,10 @@ export const siteConfig = {
    * Romit's profiles, in this order on the Contact page under "Find Me Here", and in the author's
    * structured data (`sameAs`), which tells search engines they are the same person.
    */
-  profiles: [github, x, linkedin] satisfies SocialLink[],
+  profiles: [website, github, x, linkedin] satisfies SocialLink[],
 
   /** The icons in the footer, followed by email. */
-  socials: [x, github, linkedin] satisfies SocialLink[],
+  socials: [website, x, github, linkedin] satisfies SocialLink[],
 };
 
 export const navigation: NavLink[] = [

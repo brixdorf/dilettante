@@ -69,7 +69,7 @@ test.describe("Romit's words", () => {
     await expect(page.locator(`main a[href="mailto:${EMAIL}"]`).first()).toBeVisible();
   });
 
-  test("Find Me Here lists email, GitHub, X, LinkedIn and the feed, each with its icon", async ({
+  test("Find Me Here lists email, website, GitHub, X, LinkedIn and the feed, each with its icon", async ({
     page,
   }) => {
     await page.goto("/contact/");
@@ -86,6 +86,7 @@ test.describe("Romit's words", () => {
     );
     expect(found).toEqual([
       { href: `mailto:${EMAIL}`, text: EMAIL, icon: true },
+      { href: "https://romitraj.dev", text: "romitraj.dev", icon: true },
       { href: "https://github.com/brixdorf", text: "@brixdorf", icon: true },
       { href: "https://x.com/brixdorf", text: "@brixdorf", icon: true },
       { href: "https://www.linkedin.com/in/romitrajsahu", text: "romitrajsahu", icon: true },

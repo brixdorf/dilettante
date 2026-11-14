@@ -5,6 +5,7 @@ import { LIVE_ORIGIN, builtPages, builtPosts } from "./helpers";
 
 // Romit's profiles, in the order the Contact page lists them.
 const PROFILES = [
+  "https://romitraj.dev",
   "https://github.com/brixdorf",
   "https://x.com/brixdorf",
   "https://www.linkedin.com/in/romitrajsahu",
@@ -80,12 +81,13 @@ test("the author page names Romit's profiles in its structured data", async ({ p
   expect(profile.mainEntity.sameAs).toEqual(PROFILES);
 });
 
-test("the footer's icons link to Romit's profiles and email", async ({ page }) => {
+test("the footer's icons link to Romit's website, profiles and email", async ({ page }) => {
   await page.goto("/");
   const icons = await page
     .locator("footer a.icon-btn")
     .evaluateAll((links) => links.map((link) => link.getAttribute("href")));
   expect(icons).toEqual([
+    "https://romitraj.dev",
     "https://x.com/brixdorf",
     "https://github.com/brixdorf",
     "https://www.linkedin.com/in/romitrajsahu",
@@ -118,4 +120,11 @@ test("the theme switch changes between light and dark", async ({ page }) => {
   await expect(page.locator("html")).not.toHaveClass(/dark/);
   await page.locator("[data-theme-toggle]:visible").first().click();
   await expect(page.locator("html")).toHaveClass(/dark/);
+});
+
+test("the footer's website icon is a globe with a clear name", async ({ page }) => {
+  await page.goto("/");
+  const website = page.locator('footer a.icon-btn[href="https://romitraj.dev"]');
+  await expect(website).toHaveAttribute("aria-label", "My personal website");
+  await expect(website.locator("svg")).toBeAttached();
 });
